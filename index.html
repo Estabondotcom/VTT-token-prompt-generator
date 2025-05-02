@@ -339,6 +339,64 @@ function copyPrompt() {
   const text = document.getElementById("output-box").innerText;
   navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
 }
+
+function generateAdventurerPrompt() {
+  const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
+  const g = document.getElementById("gender-adv").value;
+  const a = document.getElementById("ancestry-adv").value;
+  const c = document.getElementById("class-adv").value;
+  const h = document.getElementById("hair-adv").value;
+  const e = document.getElementById("eyes-adv").value;
+  const t = document.getElementById("traits-adv").value;
+  const cl = document.getElementById("clothes-adv").value;
+  const ge = document.getElementById("gear-adv").value;
+  const m = document.getElementById("mood-adv").value;
+
+  const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+  document.getElementById("output-box").innerText = prompt;
+}
+
+function generateVillagerPrompt() {
+  const ref = document.getElementById("ref-vil").checked ? "Based on this reference image. " : "";
+  const g = document.getElementById("gender-vil").value;
+  const a = document.getElementById("ancestry-vil").value;
+  const o = document.getElementById("occupation-vil").value;
+  const h = document.getElementById("hair-vil").value;
+  const e = document.getElementById("eyes-vil").value;
+  const t = document.getElementById("traits-vil").value;
+  const cl = document.getElementById("clothes-vil").value;
+  const ge = document.getElementById("gear-vil").value;
+  const m = document.getElementById("mood-vil").value;
+
+  const prompt = `Enhance this prompt then generate the image from the enhanced prompt and display the enhanced prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+  document.getElementById("output-box").innerText = prompt;
+}
+
+function generateCreaturePrompt() {
+  const ref = document.getElementById("ref-cre").checked ? "Based on this reference image. " : "";
+  const specific = document.getElementById("specific-cre").checked;
+  const name = document.getElementById("name-cre").value;
+  const fam = document.getElementById("family-cre").value;
+  const col = document.getElementById("color-cre").value;
+  const feat = document.getElementById("features-cre").value;
+  const face = document.getElementById("face-cre").value;
+  const mood = document.getElementById("mood-cre").value;
+  const pose = document.getElementById("pose-cre").value;
+
+  const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
+  const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+  document.getElementById("output-box").innerText = prompt;
+}
+
 </script>
 
 
