@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PF2e Token Prompt Generator</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        
+  <meta charset="UTF-8">
+  <title>PF2e Token Prompt Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    
 .switch {
   position: relative;
   display: inline-block;
@@ -45,39 +45,39 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-        .tab {
-            display: none;
-        }
-        .tab-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-        .tab-buttons button {
-            flex-grow: 1;
-            background-color: #d4af37;
-            color: #2b1e16;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .tab-buttons button.active {
-            background-color: #8b5e3c;
-            color: white;
-        }
-    </style>
+    .tab {
+      display: none;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .tab-buttons button {
+      flex-grow: 1;
+      background-color: #d4af37;
+      color: #2b1e16;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .tab-buttons button.active {
+      background-color: #8b5e3c;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
+  <div class="container">
     <h1>PF2e Token Prompt Generator</h1>
     <div class="tab-buttons">
-        <button onclick="switchTab('heroTab')" id="heroBtn" class="active">Adventurer</button>
-        <button onclick="switchTab('villagerTab')" id="villagerBtn">Villager</button>
-        <button onclick="switchTab('monsterTab')" id="monsterBtn">Monster</button>
+      <button onclick="switchTab('heroTab')" id="heroBtn" class="active">Adventurer</button>
+      <button onclick="switchTab('villagerTab')" id="villagerBtn">Villager</button>
+      <button onclick="switchTab('monsterTab')" id="monsterBtn">Monster</button>
     </div>
 
     <div id="heroTab" class="tab" style="display: block;">
-        
+      
 <div class="toggle">
     <label for="heroReferenceToggle">Will you be providing a reference image?</label>
     <input type="checkbox" id="heroReferenceToggle">
@@ -123,7 +123,7 @@ input:checked + .slider:before {
     </div>
 
     <div id="villagerTab" class="tab">
-        
+      
 <h1>PF2e Token Prompt Generator</h1>
 <label class="switch"><input type="checkbox" id="referenceToggle"><span class="slider"></span></label>
 <label for="referenceToggle">Will you be providing a reference image?</label>
@@ -161,7 +161,7 @@ input:checked + .slider:before {
     </div>
 
     <div id="monsterTab" class="tab">
-        
+      
 <h1>PF2e Monster Prompt Generator</h1>
 <div class="toggle">
 <label for="referenceToggle">Will you be providing a reference image?</label>
@@ -200,21 +200,17 @@ input:checked + .slider:before {
 
 
     </div>
-</div>
+  </div>
 
-<script>
-function switchTab(tabId) {
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => tab.style.display = 'none');
-
-    const buttons = document.querySelectorAll('.tab-buttons button');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    document.getElementById(tabId).style.display = 'block';
-    document.getElementById(tabId.replace("Tab", "Btn")).classList.add('active');
-}
-</script>
-<script>
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
+      document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabId).style.display = 'block';
+      document.getElementById(tabId.replace("Tab", "Btn")).classList.add('active');
+    }
+  </script>
+  <script>
 function fillRandomHero() {
     const genders = ["male", "female", "non-binary"];
     const ancestries = ["elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk", "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin", "tripkee", "vanara", "kholo", "shoony"];
@@ -270,7 +266,7 @@ function copyHeroPromptToClipboard() {
     });
 }
 </script>
-<script>
+  <script>
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
       "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
@@ -338,7 +334,7 @@ function copyHeroPromptToClipboard() {
     });
   }
 </script>
-<script>
+  <script>
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
