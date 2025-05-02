@@ -201,10 +201,10 @@ textarea,
 <input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
 <label for="demeanor">Mood or Demeanor:</label>
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-<button onclick="generatePrompt()">Generate Prompt</button>
-<button onclick="fillRandomVillager()">Generate Random Villager</button>
+
+
 <div></div>
-<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px auto;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div></div>
 <div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
 <label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
@@ -234,12 +234,11 @@ textarea,
 <label for="pose">Creature Pose:</label>
 <input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
 </div>
-<button onclick="generateMonsterPrompt()">Generate Creature Prompt</button>
-<button onclick="generateRandom()">Generate Random Creature</button>
-<div></div>
-<button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div>
-<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 
+
+<div></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px auto;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div></div>
+<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 <script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
