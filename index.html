@@ -2,47 +2,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PF2e Token Prompt Generator</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #2b1e16;
-      color: #f4e5c1;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    .tab {
-      display: none;
-    }
-    .tab-buttons {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-    }
-    .tab-buttons button {
-      flex-grow: 1;
-      background-color: #d4af37;
-      color: #2b1e16;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-    }
-    .tab-buttons button.active {
-      background-color: #8b5e3c;
-      color: white;
-    }
-    input, select, textarea, button {
-      font-family: inherit;
-      font-size: 16px;
-    }
-  </style>
-</head>
+<meta charset="utf-8"/>
+<title>PF2e Token Prompt Generator for ChatGPT</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+body {
+    background-color: #2b1e16;
+    font-family: 'Georgia', serif;
+    color: #d4af37;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #d4af37;
+    text-align: center;
+}
+
+label {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+input[type="text"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #cbc18e;
+    color: #1e1e2f;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #672320;
+}
+
+button {
+    background-color: #672320;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px 5px 10px 0;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4d1a18;
+}
+
+#output {
+    margin-top: 20px;
+    background-color: #cbc18e;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #672320;
+    white-space: pre-line;
+}
+
+input[type="text"], select, textarea {
+    font-size: 75%;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #d4af37;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+</style></head>
 <body>
   <div class="container">
     <h1>PF2e Token Prompt Generator</h1>
