@@ -161,8 +161,8 @@
     <div class="switch-group">
       <input type="checkbox" id="specific-cre" onchange="toggleCreatureName()"> <label for="specific-cre">Is this a specific creature?</label>
     </div>
-    <div class="field-group" id="name-field" class="hidden"><label>Creature Name</label><input id="name-cre" placeholder="e.g. Flamegore, Skittermaw" style="color: grey;"></div>
-    <div class="field-group" id="family-field"><label>Creature Family</label><input id="family-cre" placeholder="e.g. dragon, insect, undead" style="color: grey;"></div>
+    <div class="field-group" id="name-field" style="display: none;"><label>Creature Name</label><input id="name-cre" placeholder="e.g. Flamegore, Skittermaw" style="color: grey;"></div>
+    <div class="field-group" id="family-field" style="display: block;"><label>Creature Family</label><input id="family-cre" placeholder="e.g. dragon, insect, undead" style="color: grey;"></div>
     <div class="field-group"><label>Coloration or Patterns</label><input id="color-cre" placeholder="e.g. iridescent scales, mottled fur" style="color: grey;"></div>
     <div class="field-group"><label>Unique Physical Features</label><input id="features-cre" placeholder="e.g. six limbs, antlered head" style="color: grey;"></div>
     <div class="field-group"><label>Eyes or Facial Details</label><input id="face-cre" placeholder="e.g. glowing eyes, beaked maw" style="color: grey;"></div>
@@ -396,6 +396,13 @@ ${ref}Generate a full-body isometric top-down token for use with FoundryVTT, sty
 
   document.getElementById("output-box").innerText = prompt;
 }
+
+
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    input.style.color = 'black';
+  });
+});
 
 </script>
 
