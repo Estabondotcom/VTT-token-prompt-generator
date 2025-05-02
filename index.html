@@ -144,7 +144,6 @@ input:checked + .slider:before {
 <label for="weapon">Weapons or Gear:</label><input id="weapon" placeholder="e.g., curved dagger, rune-inscribed staff" type="text"/>
 <button onclick="generatePrompt()" type="button">Generate Prompt</button>
 <button onclick="generateRandomCharacter()" type="button">Generate Random Character</button>
-<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 </form>
 <div  style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div><button onclick="copyToClipboard()">Copy to Clipboard</button>
 <div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
@@ -179,10 +178,8 @@ input:checked + .slider:before {
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
 <button onclick="generatePrompt()">Generate Prompt</button>
 <button onclick="fillRandomVillager()">Generate Random Villager</button>
-<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 <div ></div>
-<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
-</div>
+<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div>
     <div id="creatureTab" class="tab" style="display: none;">
 <h1>PF2E Creature Prompt Generator</h1>
 <div class="toggle">
@@ -215,10 +212,10 @@ input:checked + .slider:before {
 </div>
 <button onclick="generateMonsterPrompt()">Generate Creature Prompt</button>
 <button onclick="generateRandom()">Generate Random Creature</button>
-<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 <div ></div>
-<button onclick="copyPromptToClipboard()">Copy to Clipboard</button>
-</div>
+<button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div>
+
+    <div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
   </div>
 
   <script>
