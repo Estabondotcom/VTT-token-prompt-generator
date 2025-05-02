@@ -122,7 +122,7 @@ input:checked + .slider:before {
 <body>
   <div class="container">
     <h1>PF2e Token Prompt Generator</h1>
-    <div class="tab-buttons">
+    <div class="tab-buttons" style="font-size: 3em;">
       <button onclick="switchTab('adventurerTab')" id="adventurerBtn" class="active">Adventurer</button>
       <button onclick="switchTab('villagerTab')" id="villagerBtn">Villager</button>
       <button onclick="switchTab('creatureTab')" id="creatureBtn">Creature</button>
@@ -150,7 +150,7 @@ input:checked + .slider:before {
 <script src="script.js"></script>
 </div>
 </div>
-    <div id="villagerTab" class="tab">
+    <div id="villagerTab" class="tab" style="display: none;">
 <h1>PF2e Token Prompt Generator</h1>
 <div class="toggle">
 <label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
@@ -183,7 +183,7 @@ input:checked + .slider:before {
 <button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
 
 </div>
-    <div id="creatureTab" class="tab">
+    <div id="creatureTab" class="tab" style="display: none;">
 <h1>PF2E Creature Prompt Generator</h1>
 <div class="toggle">
 <label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
