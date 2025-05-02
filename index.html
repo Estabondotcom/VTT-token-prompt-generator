@@ -203,8 +203,7 @@ input[type="checkbox"] {
 </form>
 </div>
 
-<script src="script.js"></script>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button><button onclick="copyToClipboard()">Copy to Clipboard</button></div></div></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button></div><div id="adventurerOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div></div>
 <div class="tab" id="villagerTab" style="display: none;">
 <label for="gender">Gender:</label>
 <select id="gender">
@@ -228,8 +227,7 @@ input[type="checkbox"] {
 <input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
 <label for="demeanor">Mood or Demeanor:</label>
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button></div><div id="villagerOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div>
 <div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
 <label class="switch"></label>
@@ -256,17 +254,11 @@ input[type="checkbox"] {
 <label for="pose">Creature Pose:</label>
 <input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
 </div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button></div><div id="creatureOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div>
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div></div>
 
-<script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
-      document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(tabId).style.display = 'block';
-      document.getElementById(tabId.replace('Tab', 'Btn')).classList.add('active');
-    }
-  </script>
+
+
 <script>function generatePrompt() {
     const gender = document.getElementById("gender").value;
     const ancestry = document.getElementById("ancestry").value;
@@ -290,14 +282,14 @@ input[type="checkbox"] {
               `They are wearing ${clothing}, and wielding ${weapon}.\n` +
               `The style is that of detailed D&D artwork. The token should be a png file and have a transparent background.`;
 
-    document.getElementById("unifiedOutput").value = prompt;
+    document.getElementById("output").value = prompt;
 }
 
 function copyToClipboard() {
-    const output = document.getElementById("unifiedOutput");
+    const output = document.getElementById("output");
     output.select();
     output.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(document.getElementById("unifiedOutput").value || document.getElementById("unifiedOutput").innerText).then(() => {
+    navigator.clipboard.writeText(output.value).then(() => {
         alert("Prompt copied to clipboard!");
     });
 }
@@ -326,7 +318,6 @@ function generateRandomCharacter() {
         document.getElementById("class").value += " of " + randomChoice(gods);
     } else if (selectedClass === "champion") {
         document.getElementById("class").value += " of " + randomChoice(gods);
-    generatePrompt();
     }
     document.getElementById("hair").value = "Random hair style and color appropriate for ancestry";
     document.getElementById("eyes").value = randomChoice(eyes);
@@ -337,8 +328,9 @@ function generateRandomCharacter() {
 
 function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
-}</script>
-<script>
+}
+
+
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
       "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
@@ -390,11 +382,11 @@ function randomChoice(arr) {
         `Their posture and facial expression should reflect ${demeanor}.\n` +
         `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
 
-      document.getElementById("unifiedOutput").innerText = prompt;
+      document.getElementById("output").innerText = prompt;
     }
   
   function copyToClipboard() {
-    const output = document.getElementById("unifiedOutput").innerText;
+    const output = document.getElementById("output").innerText;
     if (!output) {
       alert("No prompt to copy!");
       return;
@@ -405,8 +397,8 @@ function randomChoice(arr) {
       alert("Failed to copy text: " + err);
     });
   }
-</script>
-<script>
+
+
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
@@ -445,7 +437,7 @@ function randomChoice(arr) {
       }
 
       prompt += `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
-      document.getElementById("unifiedOutput").innerText = prompt;
+      document.getElementById("output").innerText = prompt;
     }
 
     function getRandom(arr) {
@@ -479,7 +471,7 @@ function randomChoice(arr) {
     }
 
     function copyPromptToClipboard() {
-      const output = document.getElementById("unifiedOutput").innerText;
+      const output = document.getElementById("output").innerText;
       navigator.clipboard.writeText(output).then(() => {
         alert("Prompt copied to clipboard!");
       }).catch(err => {
@@ -487,6 +479,5 @@ function randomChoice(arr) {
       });
     }
   window.onload = toggleFields;
-</script>
-</body>
+</script></body>
 </html>
