@@ -203,6 +203,25 @@ input:checked + .slider:before {
   </div>
 
   <script>
+function switchTab(tabId) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.style.display = 'none';
+  });
+
+  const buttons = document.querySelectorAll('.tab-buttons button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  const selectedTab = document.getElementById(tabId);
+  const selectedBtn = document.getElementById(tabId.replace("Tab", "Btn"));
+
+  if (selectedTab && selectedBtn) {
+    selectedTab.style.display = 'block';
+    selectedBtn.classList.add('active');
+  }
+}
+</script>
+<script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
       document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
@@ -211,6 +230,25 @@ input:checked + .slider:before {
     }
   </script>
   <script>
+function switchTab(tabId) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.style.display = 'none';
+  });
+
+  const buttons = document.querySelectorAll('.tab-buttons button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  const selectedTab = document.getElementById(tabId);
+  const selectedBtn = document.getElementById(tabId.replace("Tab", "Btn"));
+
+  if (selectedTab && selectedBtn) {
+    selectedTab.style.display = 'block';
+    selectedBtn.classList.add('active');
+  }
+}
+</script>
+<script>
 function fillRandomHero() {
     const genders = ["male", "female", "non-binary"];
     const ancestries = ["elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk", "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin", "tripkee", "vanara", "kholo", "shoony"];
@@ -267,6 +305,25 @@ function copyHeroPromptToClipboard() {
 }
 </script>
   <script>
+function switchTab(tabId) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.style.display = 'none';
+  });
+
+  const buttons = document.querySelectorAll('.tab-buttons button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  const selectedTab = document.getElementById(tabId);
+  const selectedBtn = document.getElementById(tabId.replace("Tab", "Btn"));
+
+  if (selectedTab && selectedBtn) {
+    selectedTab.style.display = 'block';
+    selectedBtn.classList.add('active');
+  }
+}
+</script>
+<script>
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
       "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
@@ -335,6 +392,25 @@ function copyHeroPromptToClipboard() {
   }
 </script>
   <script>
+function switchTab(tabId) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.style.display = 'none';
+  });
+
+  const buttons = document.querySelectorAll('.tab-buttons button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  const selectedTab = document.getElementById(tabId);
+  const selectedBtn = document.getElementById(tabId.replace("Tab", "Btn"));
+
+  if (selectedTab && selectedBtn) {
+    selectedTab.style.display = 'block';
+    selectedBtn.classList.add('active');
+  }
+}
+</script>
+<script>
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
