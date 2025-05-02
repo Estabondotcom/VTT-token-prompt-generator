@@ -288,6 +288,7 @@ function generateRandomCharacter() {
         document.getElementById("class").value += " of " + randomChoice(gods);
     } else if (selectedClass === "champion") {
         document.getElementById("class").value += " of " + randomChoice(gods);
+    generatePrompt();
     }
     document.getElementById("hair").value = "Random hair style and color appropriate for ancestry";
     document.getElementById("eyes").value = randomChoice(eyes);
@@ -298,8 +299,7 @@ function generateRandomCharacter() {
 
 function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
-}
-</script>
+}</script>
   <script>
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
