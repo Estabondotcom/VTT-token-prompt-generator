@@ -184,7 +184,6 @@ input[type="checkbox"] {
 <div class="tab" id="adventurerTab" style="display: block;">
 <div class="container">
 <label class="switch"><span class="slider"></span></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div></div></div>
-<p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
 <form id="tokenForm">
 <label for="gender">Gender:</label><input id="gender" placeholder="e.g., male, female, nonbinary" type="text"/>
 <label for="ancestry">Ancestry:</label><input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
@@ -200,9 +199,6 @@ input[type="checkbox"] {
 <script src="script.js"></script>
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button><button onclick="copyToClipboard()">Copy to Clipboard</button></div></div></div>
 <div class="tab" id="villagerTab" style="display: none;">
-<div class="toggle">
-<label class="switch"><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
-</div>
 <label for="gender">Gender:</label>
 <select id="gender">
 <option value="male">male</option>
@@ -228,9 +224,6 @@ input[type="checkbox"] {
 <div></div>
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px auto;"></div><div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div></div>
 <div class="tab" id="creatureTab" style="display: none;">
-<div class="toggle">
-<label class="switch"><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
-</div>
 <div class="toggle">
 <label class="switch"><span class="slider"></span></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div>
 </div>
