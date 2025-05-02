@@ -122,7 +122,6 @@ input:checked + .slider:before {
 <body>
   <div class="container">
     <h1>PF2e Token Prompt Generator</h1>
-    <div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
     <div class="tab-buttons" style="font-size: 3em;">
       <button onclick="switchTab('adventurerTab')" id="adventurerBtn" class="active">Adventurer</button>
       <button onclick="switchTab('villagerTab')" id="villagerBtn">Villager</button>
@@ -149,8 +148,7 @@ input:checked + .slider:before {
 <div  style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div><button onclick="copyToClipboard()">Copy to Clipboard</button>
 <div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
 <script src="script.js"></script>
-</div>
-</div>
+</div></div>
     <div id="villagerTab" class="tab" style="display: none;">
 <h1>PF2e Token Prompt Generator</h1>
 <div class="toggle">
@@ -182,7 +180,6 @@ input:checked + .slider:before {
 <button onclick="fillRandomVillager()">Generate Random Villager</button>
 <div ></div>
 <button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
-
 </div>
     <div id="creatureTab" class="tab" style="display: none;">
 <h1>PF2E Creature Prompt Generator</h1>
@@ -218,7 +215,6 @@ input:checked + .slider:before {
 <button onclick="generateRandom()">Generate Random Creature</button>
 <div ></div>
 <button onclick="copyPromptToClipboard()">Copy to Clipboard</button>
-
 </div>
   </div>
 
