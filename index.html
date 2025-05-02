@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unified PF2e Token Prompt Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tab {
+            display: none;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab-buttons button {
+            flex-grow: 1;
+            background-color: #d4af37;
+            color: #2b1e16;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tab-buttons button.active {
+            background-color: #8b5e3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Unified PF2e Token Prompt Generator</h1>
+    <div class="tab-buttons">
+        <button onclick="switchTab('characterTab')" id="charBtn" class="active">Character</button>
+        <button onclick="switchTab('monsterTab')" id="monBtn">Monster</button>
+        <button onclick="switchTab('specificTab')" id="specBtn">Specific Creature</button>
+    </div>
+
+    <div id="characterTab" class="tab" style="display: block;">
+        <!-- Character generator form here -->
+        
+<h1>PF2e Token Prompt Generator</h1>
+<div class="toggle">
+<label for="referenceToggle">Will you be providing a reference image?</label>
+<input id="referenceToggle" type="checkbox"/>
+</div>
+<label for="gender">Gender:</label>
+<select id="gender">
+<option value="male">male</option>
+<option value="female">female</option>
+<option value="non-binary">non-binary</option>
+</select>
+<label for="ancestry">Ancestry:</label>
+<input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
+<label for="occupation">Occupation:</label>
+<input id="occupation" placeholder="e.g., blacksmith, herbalist, merchant" type="text"/>
+<label for="hair">Hair Style and Color:</label>
+<input id="hair" placeholder="e.g., braided silver hair" type="text"/>
+<label for="eyes">Eye Description:</label>
+<input id="eyes" placeholder="e.g., piercing blue eyes" type="text"/>
+<label for="traits">Unique Physical Traits:</label>
+<input id="traits" placeholder="e.g., a missing finger, glowing tattoos" type="text"/>
+<label for="clothing">Occupation-Appropriate Clothing or Gear:</label>
+<input id="clothing" placeholder="e.g., soot-covered apron and leather gloves" type="text"/>
+<label for="item">Item/Tool/Prop Associated with Job:</label>
+<input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
+<label for="demeanor">Mood or Demeanor:</label>
+<input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
+<button onclick="generatePrompt()">Generate Prompt</button>
+<button onclick="fillRandomVillager()">Generate Random Villager</button>
+<div id="output"></div>
+<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
+
+
+    </div>
+
+    <div id="monsterTab" class="tab">
+        <!-- Monster generator form here -->
+        
+<h1>PF2e Monster Prompt Generator</h1>
+<div class="toggle">
+<label for="referenceToggle">Will you be providing a reference image?</label>
+<input id="referenceToggle" type="checkbox"/>
+</div>
+<div class="toggle">
+<label for="specificToggle">Is this a specific PF2e creature?</label>
+<input id="specificToggle" onchange="toggleFields()" type="checkbox"/>
+</div>
+<div id="specificFields">
+<label for="name">Creature Name:</label>
+<input id="name" placeholder="e.g., Choker, Basilisk, Owlbear" type="text"/>
+<label for="unique">Unique Features:</label>
+<input id="unique" placeholder="e.g., extra limbs, molten eyes, armored hide" type="text"/>
+<label for="poseSpecific">Creature Pose:</label>
+<input id="poseSpecific" placeholder="e.g., rearing up, crouching, flying" type="text"/>
+<label for="demeanorSpecific">Creature Demeanor:</label>
+<input id="demeanorSpecific" placeholder="e.g., aggressive, curious, regal" type="text"/>
+</div>
+<div id="customFields" style="display: none;">
+<label for="family">Creature Family:</label>
+<input id="family" placeholder="e.g., dragon, ooze, undead" type="text"/>
+<label for="color">Creature Color or Patterns:</label>
+<input id="color" placeholder="e.g., iridescent scales, striped fur" type="text"/>
+<label for="customFeatures">Unique Creature Features:</label>
+<input id="customFeatures" placeholder="e.g., glowing veins, bone protrusions" type="text"/>
+<label for="temperament">Creature Temperament:</label>
+<input id="temperament" placeholder="e.g., aggressive, curious, playful" type="text"/>
+<label for="pose">Creature Pose:</label>
+<input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
+</div>
+<button onclick="generateMonsterPrompt()">Generate Monster Prompt</button>
+<button onclick="generateRandom()">Generate Random Creature</button>
+<div id="output"></div>
+<button onclick="copyPromptToClipboard()">Copy to Clipboard</button>
+
+
+    </div>
+
+    <div id="specificTab" class="tab">
+        <!-- Specific creature generator form here -->
+        
+    <p>This form uses the same layout as the Monster Generator, just toggle "Is this a specific PF2e creature?" checkbox above to 'Yes'.</p>
+    
+    </div>
+</div>
+
+<script>
+function switchTab(tabId) {
+    document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
+    document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).style.display = 'block';
+
+    if (tabId === 'characterTab') document.getElementById('charBtn').classList.add('active');
+    else if (tabId === 'monsterTab') document.getElementById('monBtn').classList.add('active');
+    else if (tabId === 'specificTab') document.getElementById('specBtn').classList.add('active');
+}
+</script>
+<script>
+    const ancestries = [
+      "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
+      "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
+      "tripkee", "vanara", "kholo", "shoony"
+    ];
+
+    const genders = ["male", "female", "non-binary"];
+
+    const occupations = [
+      "blacksmith", "herbalist", "merchant", "innkeeper", "guard", "fisher", "tailor", "scribe",
+      "baker", "shepherd", "hunter", "carpenter", "jeweler", "brewer", "librarian", "mason",
+      "cook", "tanner", "fletcher", "noble", "beggar", "miscreant", "town crier"
+    ];
+
+    function fillRandomVillager() {
+    const randomGender = genders[Math.floor(Math.random() * genders.length)];
+    const randomAncestry = ancestries[Math.floor(Math.random() * ancestries.length)];
+    const randomOccupation = occupations[Math.floor(Math.random() * occupations.length)];
+
+    document.getElementById("gender").value = randomGender;
+    document.getElementById("ancestry").value = randomAncestry;
+    document.getElementById("occupation").value = randomOccupation;
+    document.getElementById("hair").value = "[random ancestry appropriate hair style and color]";
+    document.getElementById("eyes").value = "[eye description]";
+    document.getElementById("traits").value = "[one or two unique physical traits]";
+    document.getElementById("clothing").value = "[occupation-appropriate clothing or gear]";
+    document.getElementById("item").value = "[an item/tool/prop associated with their job or trade]";
+    document.getElementById("demeanor").value = "[a mood or demeanor fitting their occupation, such as focused, friendly, suspicious, etc.]";
+  }
+
+    function generatePrompt() {
+      const prefix = "enhance this prompt and then generate a token based off the enhanced prompt";
+      const refToggle = document.getElementById("referenceToggle").checked;
+      const refText = refToggle ? "based off this reference image\n" : "";
+
+      const gender = document.getElementById("gender").value;
+      const ancestry = document.getElementById("ancestry").value;
+      const occupation = document.getElementById("occupation").value;
+      const hair = document.getElementById("hair").value;
+      const eyes = document.getElementById("eyes").value;
+      const traits = document.getElementById("traits").value;
+      const clothing = document.getElementById("clothing").value;
+      const item = document.getElementById("item").value;
+      const demeanor = document.getElementById("demeanor").value;
+
+      const prompt = `${prefix}\n\n${refText}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork.\n` +
+        `The token is of a ${gender} ${ancestry} ${occupation} with ${hair}, ${eyes}, and ${traits}.\n` +
+        `They are wearing ${clothing} and holding or carrying ${item}.\n` +
+        `Their posture and facial expression should reflect ${demeanor}.\n` +
+        `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+      document.getElementById("output").innerText = prompt;
+    }
+  
+  function copyToClipboard() {
+    const output = document.getElementById("output").innerText;
+    if (!output) {
+      alert("No prompt to copy!");
+      return;
+    }
+    navigator.clipboard.writeText(output).then(() => {
+      alert("Prompt copied to clipboard!");
+    }).catch(err => {
+      alert("Failed to copy text: " + err);
+    });
+  }
+</script><script>
+    const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
+    const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
+    const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
+    const temperaments = ["aggressive", "curious", "playful", "menacing", "regal", "skittish", "protective", "sleepy", "territorial", "brooding", "chaotic", "calculating", "hungry", "mournful", "vengeful", "jubilant", "cunning", "ravenous", "elusive", "mischievous", "stoic", "zealous", "savage", "guarded", "bashful", "violent", "obedient", "haunting", "frenzied", "serene", "gleeful", "tormented", "stoic", "bored", "hypnotic", "timid", "bold", "sorrowful", "jealous", "driven"];
+    const poses = ["rearing up", "crouching", "flying", "coiled", "charging", "lunging", "resting", "howling", "climbing", "digging", "defensive stance", "sprawled", "slithering", "gliding", "poised to strike", "floating", "perched", "stalking", "burrowing", "entangled", "sitting", "standing tall", "snarling", "kneeling", "bellowing", "levitating", "diving", "ambushing", "vaulting", "dancing", "clinging to ceiling", "unfurling wings", "breaking chains", "readying a spell", "emerging from shadows", "pouncing mid-air", "turning to flee", "locked in duel", "reaching outward", "smashing the ground"];
+
+    function toggleFields() {
+      const specific = document.getElementById("specificToggle").checked;
+      document.getElementById("specificFields").style.display = specific ? "block" : "none";
+      document.getElementById("customFields").style.display = specific ? "none" : "block";
+    }
+
+    function generateMonsterPrompt() {
+      const useRef = document.getElementById("referenceToggle").checked;
+      const isSpecific = document.getElementById("specificToggle").checked;
+      let prompt = "enhance this prompt and then generate a token based off the enhanced prompt\n\n";
+      if (useRef) prompt += "based off this reference image\n";
+
+      if (isSpecific) {
+        const name = document.getElementById("name").value;
+        const unique = document.getElementById("unique").value;
+        const pose = document.getElementById("poseSpecific").value;
+        const demeanor = document.getElementById("demeanorSpecific").value;
+        prompt += `Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork.\n`;
+        prompt += `The token is of the creature "${name}" with the following unique features: ${unique}.\n`;
+        prompt += `Its demeanor is ${demeanor}, and it's posed ${pose}.\n`;
+      } else {
+        const family = document.getElementById("family").value;
+        const color = document.getElementById("color").value;
+        const features = document.getElementById("customFeatures").value;
+        const temperament = document.getElementById("temperament").value;
+        const pose = document.getElementById("pose").value;
+        prompt += `Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork.\n`;
+        prompt += `The token is of a creature from the ${family} family with ${color}, featuring ${features}.\n`;
+        prompt += `Its demeanor is ${temperament}, and it's posed ${pose}.\n`;
+      }
+
+      prompt += `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+      document.getElementById("output").innerText = prompt;
+    }
+
+    function getRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateRandom() {
+      const isSpecific = document.getElementById("specificToggle").checked;
+
+      if (isSpecific) {
+        document.getElementById("name").value =
+          document.getElementById("name").value = "Unknown Horror";
+        document.getElementById("unique").value =
+          document.getElementById("unique").value = getRandom(features);
+        document.getElementById("poseSpecific").value =
+          document.getElementById("poseSpecific").value = getRandom(poses);
+        document.getElementById("demeanorSpecific").value =
+          document.getElementById("demeanorSpecific").value = getRandom(temperaments);
+      } else {
+        document.getElementById("family").value =
+          document.getElementById("family").value = getRandom(families);
+        document.getElementById("color").value =
+          document.getElementById("color").value = getRandom(colors);
+        document.getElementById("customFeatures").value =
+          document.getElementById("customFeatures").value = getRandom(features);
+        document.getElementById("temperament").value =
+          document.getElementById("temperament").value = getRandom(temperaments);
+        document.getElementById("pose").value =
+          document.getElementById("pose").value = getRandom(poses);
+      }
+    }
+
+    function copyPromptToClipboard() {
+      const output = document.getElementById("output").innerText;
+      navigator.clipboard.writeText(output).then(() => {
+        alert("Prompt copied to clipboard!");
+      }).catch(err => {
+        alert("Failed to copy: " + err);
+      });
+    }
+  window.onload = toggleFields;
+</script></body>
+</html>
