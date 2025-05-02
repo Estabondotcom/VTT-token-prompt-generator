@@ -10,7 +10,7 @@
       color: #f5e175;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px 15px;
+      padding: 20px 5px;
     }
 
     h1 {
@@ -103,7 +103,34 @@
     .hidden {
       display: none;
     }
-  </style>
+  
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .tab-buttons button,
+  .action-buttons button,
+  .field-group input {
+    width: 100%;
+    font-size: 1.1em;
+  }
+
+  .switch-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .switch-group label {
+    font-size: 1.4em;
+  }
+
+  #output-box {
+    font-size: 1em;
+  }
+}
+
+</style>
 </head>
 <body>
 
