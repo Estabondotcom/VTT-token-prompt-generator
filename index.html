@@ -1,201 +1,26 @@
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>PF2e Token Prompt Generator for ChatGPT</title>
-<link href="styles.css" rel="stylesheet"/>
-<style>
-body {
-    background-color: #2b1e16;
-    font-family: 'Georgia', serif;
-    color: #d4af37;
-    margin: 0;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.container {
-    max-width: 100%;
-    padding: 0 10px;
-}
-
-h1 {
-    color: #d4af37;
-    text-align: center;
-    font-size: 4em;
-}
-
-label {
-    color: #d4af37;
-    font-weight: bold;
-}
-
-input[type="text"], select, textarea {
-    width: 100%;
-    max-width: 600px;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: none;
-    background-color: #cbc18e;
-    color: #1e1e2f;
-    font-size: 75%;
-    display: block;
-}
-
-input::placeholder, textarea::placeholder {
-    color: #672320;
-}
-
-button {
-    background-color: #672320;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px 5px 10px 0;
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #4d1a18;
-}
-
-#unifiedOutput {
-    margin-top: 20px;
-    background-color: #cbc18e;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #672320;
-    white-space: pre-line;
-    max-width: 600px;
-}
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
-}
-
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 24px;
-}
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-  background-color: #8b5e3c;
-}
-  transform: translateX(26px);
-}
-
-.container {
-    text-align: center;
-}
-
-label,
-    display: block;
-    text-align: left;
-    margin: 0 auto;
-    max-width: 600px;
-}
-
-input[type="text"],
-select,
-textarea,
-#unifiedOutput {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 10px auto;
-  max-width: 600px;
-  font-weight: bold;
-  color: #d4af37;
-}
-.container {
-    text-align: center;
-}
-label {
-    display: block;
-    text-align: left;
-    margin: 0 auto;
-    max-width: 600px;
-    font-weight: bold;
-}
-input[type="text"],
-select,
-textarea,
-#unifiedOutput {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 600px;
-    width: 100%;
-}
-input[type="checkbox"] {
-    transform: scale(1.25);
-    margin: 0 10px 0 0;
-    vertical-align: middle;
-}
-
-
-button:hover {
-  background-color: #4d1a18;
-}
-</style><style>
-.tab-buttons button {
-    font-size: 2em !important;
-    padding: 20px 30px !important;
-    height: auto !important;
-    min-height: 80px;
-}
-</style></head>
+  <meta charset="UTF-8" />
+  <title>PF2e Prompt Generator Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-<header style="text-align: center; padding: 30px 0;">
-<h1 style="font-family: 'Cinzel', 'Georgia', serif; font-size: 3.5em; font-weight: bold; color: #d4af37;">
-    VTT Token Prompt Generator for ChatGPT
-  </h1>
-</header>
 <div class="container">
-<div class="tab-buttons" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
-<button class="active" id="adventurerBtn" onclick="switchTab('adventurerTab')">Adventurer</button>
-<button id="villagerBtn" onclick="switchTab('villagerTab')">Villager</button>
-<button id="creatureBtn" onclick="switchTab('creatureTab')">Creature</button>
-</div>
-<div class="tab" id="adventurerTab" style="display: block;">
+  <h1>PF2e Prompt Generator</h1>
+  <div class="tab-buttons">
+    <button onclick="showTab('adventurer')">Adventurer</button>
+    <button onclick="showTab('villager')">Villager</button>
+    <button onclick="showTab('creature')">Creature</button>
+  </div>
+  <div id="tabs">
+
+<div id="adventurer" class="tab" style="display:none;">
 <div class="container">
-<label class="switch"></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div></div>
+<h1>PF2e Token Prompt Generator for ChatGPT</h1>
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label class="toggle-label" for="referenceToggle">Provide an optional reference picture</label>
+<p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
 <form id="tokenForm">
 <label for="gender">Gender:</label><input id="gender" placeholder="e.g., male, female, nonbinary" type="text"/>
 <label for="ancestry">Ancestry:</label><input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
@@ -205,60 +30,13 @@ button:hover {
 <label for="unique">Unique Physical Traits:</label><input id="unique" placeholder="e.g., glowing tattoos, missing finger" type="text"/>
 <label for="clothing">Clothing or Armor:</label><input id="clothing" placeholder="e.g., leather armor, ceremonial robes" type="text"/>
 <label for="weapon">Weapons or Gear:</label><input id="weapon" placeholder="e.g., curved dagger, rune-inscribed staff" type="text"/>
+<button onclick="generatePrompt()" type="button">Generate Prompt</button>
+<button onclick="generateRandomCharacter()" type="button">Generate Random Character</button>
 </form>
+<div id="output" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div><button onclick="copyToClipboard()">Copy to Clipboard</button>
+<div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
+<script src="script.js"></script>
 </div>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button><button onclick="navigator.clipboard.writeText(document.getElementById('adventurerOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="adventurerOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div></div>
-<div class="tab" id="villagerTab" style="display: none;">
-<label for="gender">Gender:</label>
-<select id="gender">
-<option value="male">male</option>
-<option value="female">female</option>
-<option value="non-binary">non-binary</option>
-</select>
-<label for="ancestry">Ancestry:</label>
-<input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
-<label for="occupation">Occupation:</label>
-<input id="occupation" placeholder="e.g., blacksmith, herbalist, merchant" type="text"/>
-<label for="hair">Hair Style and Color:</label>
-<input id="hair" placeholder="e.g., braided silver hair" type="text"/>
-<label for="eyes">Eye Description:</label>
-<input id="eyes" placeholder="e.g., piercing blue eyes" type="text"/>
-<label for="traits">Unique Physical Traits:</label>
-<input id="traits" placeholder="e.g., a missing finger, glowing tattoos" type="text"/>
-<label for="clothing">Occupation-Appropriate Clothing or Gear:</label>
-<input id="clothing" placeholder="e.g., soot-covered apron and leather gloves" type="text"/>
-<label for="item">Item/Tool/Prop Associated with Job:</label>
-<input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
-<label for="demeanor">Mood or Demeanor:</label>
-<input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="navigator.clipboard.writeText(document.getElementById('villagerOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="villagerOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div>
-<div class="tab" id="creatureTab" style="display: none;">
-<div class="toggle">
-<label class="switch"></label>
-</div>
-<div id="specificFields">
-<label for="name">Creature Name:</label>
-<input id="name" placeholder="e.g., Choker, Basilisk, Owlbear" type="text"/>
-<label for="unique">Unique Features:</label>
-<input id="unique" placeholder="e.g., extra limbs, molten eyes, armored hide" type="text"/>
-<label for="poseSpecific">Creature Pose:</label>
-<input id="poseSpecific" placeholder="e.g., rearing up, crouching, flying" type="text"/>
-<label for="demeanorSpecific">Creature Demeanor:</label>
-<input id="demeanorSpecific" placeholder="e.g., aggressive, curious, regal" type="text"/>
-</div>
-<div id="customFields" style="display: none;">
-<label for="family">Creature Family:</label>
-<input id="family" placeholder="e.g., dragon, ooze, undead" type="text"/>
-<label for="color">Creature Color or Patterns:</label>
-<input id="color" placeholder="e.g., iridescent scales, striped fur" type="text"/>
-<label for="customFeatures">Unique Creature Features:</label>
-<input id="customFeatures" placeholder="e.g., glowing veins, bone protrusions" type="text"/>
-<label for="temperament">Creature Temperament:</label>
-<input id="temperament" placeholder="e.g., aggressive, curious, playful" type="text"/>
-<label for="pose">Creature Pose:</label>
-<input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
-</div>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="navigator.clipboard.writeText(document.getElementById('creatureOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="creatureOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div>
 <script>function generatePrompt() {
     const gender = document.getElementById("gender").value;
     const ancestry = document.getElementById("ancestry").value;
@@ -329,8 +107,40 @@ function generateRandomCharacter() {
 function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
-
-
+</script>
+</div>
+<div id="villager" class="tab" style="display:none;">
+<h1>PF2e Token Prompt Generator</h1>
+<div class="toggle">
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
+</div>
+<label for="gender">Gender:</label>
+<select id="gender">
+<option value="male">male</option>
+<option value="female">female</option>
+<option value="non-binary">non-binary</option>
+</select>
+<label for="ancestry">Ancestry:</label>
+<input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
+<label for="occupation">Occupation:</label>
+<input id="occupation" placeholder="e.g., blacksmith, herbalist, merchant" type="text"/>
+<label for="hair">Hair Style and Color:</label>
+<input id="hair" placeholder="e.g., braided silver hair" type="text"/>
+<label for="eyes">Eye Description:</label>
+<input id="eyes" placeholder="e.g., piercing blue eyes" type="text"/>
+<label for="traits">Unique Physical Traits:</label>
+<input id="traits" placeholder="e.g., a missing finger, glowing tattoos" type="text"/>
+<label for="clothing">Occupation-Appropriate Clothing or Gear:</label>
+<input id="clothing" placeholder="e.g., soot-covered apron and leather gloves" type="text"/>
+<label for="item">Item/Tool/Prop Associated with Job:</label>
+<input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
+<label for="demeanor">Mood or Demeanor:</label>
+<input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
+<button onclick="generatePrompt()">Generate Prompt</button>
+<button onclick="fillRandomVillager()">Generate Random Villager</button>
+<div id="output"></div>
+<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
+<script>
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
       "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
@@ -397,8 +207,43 @@ function randomChoice(arr) {
       alert("Failed to copy text: " + err);
     });
   }
-
-
+</script>
+</div>
+<div id="creature" class="tab" style="display:none;">
+<h1>PF2E Creature Prompt Generator</h1>
+<div class="toggle">
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
+</div>
+<div class="toggle">
+<label class="switch"><input id="specificToggle" type="checkbox"/><span class="slider"></span></label><label for="specificToggle">Is this a specific PF2e creature?</label>
+</div>
+<div id="specificFields">
+<label for="name">Creature Name:</label>
+<input id="name" placeholder="e.g., Choker, Basilisk, Owlbear" type="text"/>
+<label for="unique">Unique Features:</label>
+<input id="unique" placeholder="e.g., extra limbs, molten eyes, armored hide" type="text"/>
+<label for="poseSpecific">Creature Pose:</label>
+<input id="poseSpecific" placeholder="e.g., rearing up, crouching, flying" type="text"/>
+<label for="demeanorSpecific">Creature Demeanor:</label>
+<input id="demeanorSpecific" placeholder="e.g., aggressive, curious, regal" type="text"/>
+</div>
+<div id="customFields" style="display: none;">
+<label for="family">Creature Family:</label>
+<input id="family" placeholder="e.g., dragon, ooze, undead" type="text"/>
+<label for="color">Creature Color or Patterns:</label>
+<input id="color" placeholder="e.g., iridescent scales, striped fur" type="text"/>
+<label for="customFeatures">Unique Creature Features:</label>
+<input id="customFeatures" placeholder="e.g., glowing veins, bone protrusions" type="text"/>
+<label for="temperament">Creature Temperament:</label>
+<input id="temperament" placeholder="e.g., aggressive, curious, playful" type="text"/>
+<label for="pose">Creature Pose:</label>
+<input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
+</div>
+<button onclick="generateMonsterPrompt()">Generate Creature Prompt</button>
+<button onclick="generateRandom()">Generate Random Creature</button>
+<div id="output"></div>
+<button onclick="copyPromptToClipboard()">Copy to Clipboard</button>
+<script>
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
@@ -479,5 +324,29 @@ function randomChoice(arr) {
       });
     }
   window.onload = toggleFields;
-</script></body>
+</script>
+</div>
+
+  </div>
+  <div id="unifiedOutput">Your generated prompt will appear here</div>
+  <button onclick="copyUnifiedOutput()">Copy to Clipboard</button>
+</div>
+<script>
+  function showTab(tabName) {
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => tab.style.display = 'none');
+    document.getElementById(tabName).style.display = 'block';
+  }
+
+  function copyUnifiedOutput() {
+    const output = document.getElementById("unifiedOutput").innerText;
+    navigator.clipboard.writeText(output).then(() => {
+      alert("Prompt copied to clipboard!");
+    });
+  }
+
+  // Show adventurer tab by default on load
+  window.onload = () => showTab('adventurer');
+</script>
+</body>
 </html>
