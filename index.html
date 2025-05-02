@@ -118,18 +118,18 @@
     <div class="switch-group">
       <input type="checkbox" id="ref-adv"> <label for="ref-adv">Provide a reference image</label>
     </div>
-    <div class="field-group"><label>Gender (e.g. male, female, nonbinary)</label><input id="gender-adv"></div>
-    <div class="field-group"><label>Ancestry (e.g. elf, orc, dwarf)</label><input id="ancestry-adv"></div>
-    <div class="field-group"><label>Class (e.g. cleric, rogue, fighter)</label><input id="class-adv"></div>
-    <div class="field-group"><label>Hair Style & Color (e.g. braided silver, short auburn)</label><input id="hair-adv"></div>
-    <div class="field-group"><label>Eye Description (e.g. glowing green, clouded white)</label><input id="eyes-adv"></div>
-    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-adv"></div>
-    <div class="field-group"><label>Clothes or Armor</label><input id="clothes-adv"></div>
-    <div class="field-group"><label>Weapons or Gear</label><input id="gear-adv"></div>
-    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-adv"></div>
+    <div class="field-group"><label>Gender (e.g. male, female, nonbinary)</label><input id="gender-adv" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
+    <div class="field-group"><label>Ancestry (e.g. elf, orc, dwarf)</label><input id="ancestry-adv" placeholder="e.g. elf, orc, dwarf" style="color: grey;"></div>
+    <div class="field-group"><label>Class (e.g. cleric, rogue, fighter)</label><input id="class-adv" placeholder="e.g. cleric, rogue, fighter" style="color: grey;"></div>
+    <div class="field-group"><label>Hair Style & Color (e.g. braided silver, short auburn)</label><input id="hair-adv" placeholder="e.g. braided silver, short auburn" style="color: grey;"></div>
+    <div class="field-group"><label>Eye Description (e.g. glowing green, clouded white)</label><input id="eyes-adv" placeholder="e.g. glowing green, clouded white" style="color: grey;"></div>
+    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-adv" placeholder="e.g. glowing tattoos, missing arm" style="color: grey;"></div>
+    <div class="field-group"><label>Clothes or Armor</label><input id="clothes-adv" placeholder="e.g. iron chainmail, bark tunic" style="color: grey;"></div>
+    <div class="field-group"><label>Weapons or Gear</label><input id="gear-adv" placeholder="e.g. enchanted axe, holy symbol" style="color: grey;"></div>
+    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-adv" placeholder="e.g. stoic, zealous, cunning" style="color: grey;"></div>
     <div class="action-buttons">
       <button onclick="generateAdventurerPrompt()">Generate Prompt</button>
-      <button>Generate Random Adventurer</button>
+      <button onclick="generateRandomAdventurer()">Generate Random Adventurer</button>
     </div>
   </div>
 
@@ -138,18 +138,18 @@
     <div class="switch-group">
       <input type="checkbox" id="ref-vil"> <label for="ref-vil">Provide a reference image</label>
     </div>
-    <div class="field-group"><label>Gender</label><input id="gender-vil"></div>
-    <div class="field-group"><label>Ancestry</label><input id="ancestry-vil"></div>
-    <div class="field-group"><label>Occupation</label><input id="occupation-vil"></div>
-    <div class="field-group"><label>Hair Style & Color</label><input id="hair-vil"></div>
-    <div class="field-group"><label>Eye Description</label><input id="eyes-vil"></div>
-    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-vil"></div>
-    <div class="field-group"><label>Clothing or Gear</label><input id="clothes-vil"></div>
-    <div class="field-group"><label>Tool/Prop</label><input id="gear-vil"></div>
-    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-vil"></div>
+    <div class="field-group"><label>Gender</label><input id="gender-vil" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
+    <div class="field-group"><label>Ancestry</label><input id="ancestry-vil" placeholder="e.g. halfling, human, ratfolk" style="color: grey;"></div>
+    <div class="field-group"><label>Occupation</label><input id="occupation-vil" placeholder="e.g. baker, blacksmith, merchant" style="color: grey;"></div>
+    <div class="field-group"><label>Hair Style & Color</label><input id="hair-vil" placeholder="e.g. curly red, slicked back black" style="color: grey;"></div>
+    <div class="field-group"><label>Eye Description</label><input id="eyes-vil" placeholder="e.g. kind hazel, sharp blue" style="color: grey;"></div>
+    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-vil" placeholder="e.g. hunched posture, prosthetic hand" style="color: grey;"></div>
+    <div class="field-group"><label>Clothing or Gear</label><input id="clothes-vil" placeholder="e.g. stained apron, patched vest" style="color: grey;"></div>
+    <div class="field-group"><label>Tool/Prop</label><input id="gear-vil" placeholder="e.g. wooden ladle, iron hammer" style="color: grey;"></div>
+    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-vil" placeholder="e.g. cheerful, grumpy, sly" style="color: grey;"></div>
     <div class="action-buttons">
       <button onclick="generateVillagerPrompt()">Generate Prompt</button>
-      <button>Generate Random Villager</button>
+      <button onclick="generateRandomVillager()">Generate Random Villager</button>
     </div>
   </div>
 
@@ -161,16 +161,16 @@
     <div class="switch-group">
       <input type="checkbox" id="specific-cre" onchange="toggleCreatureName()"> <label for="specific-cre">Is this a specific creature?</label>
     </div>
-    <div class="field-group" id="name-field" class="hidden"><label>Creature Name</label><input id="name-cre"></div>
-    <div class="field-group" id="family-field"><label>Creature Family</label><input id="family-cre"></div>
-    <div class="field-group"><label>Coloration or Patterns</label><input id="color-cre"></div>
-    <div class="field-group"><label>Unique Physical Features</label><input id="features-cre"></div>
-    <div class="field-group"><label>Eyes or Facial Details</label><input id="face-cre"></div>
-    <div class="field-group"><label>Temperament or Attitude</label><input id="mood-cre"></div>
-    <div class="field-group"><label>Pose Description</label><input id="pose-cre"></div>
+    <div class="field-group" id="name-field" class="hidden"><label>Creature Name</label><input id="name-cre" placeholder="e.g. Flamegore, Skittermaw" style="color: grey;"></div>
+    <div class="field-group" id="family-field"><label>Creature Family</label><input id="family-cre" placeholder="e.g. dragon, insect, undead" style="color: grey;"></div>
+    <div class="field-group"><label>Coloration or Patterns</label><input id="color-cre" placeholder="e.g. iridescent scales, mottled fur" style="color: grey;"></div>
+    <div class="field-group"><label>Unique Physical Features</label><input id="features-cre" placeholder="e.g. six limbs, antlered head" style="color: grey;"></div>
+    <div class="field-group"><label>Eyes or Facial Details</label><input id="face-cre" placeholder="e.g. glowing eyes, beaked maw" style="color: grey;"></div>
+    <div class="field-group"><label>Temperament or Attitude</label><input id="mood-cre" placeholder="e.g. aggressive, curious, regal" style="color: grey;"></div>
+    <div class="field-group"><label>Pose Description</label><input id="pose-cre" placeholder="e.g. coiled to strike, levitating" style="color: grey;"></div>
     <div class="action-buttons">
       <button onclick="generateCreaturePrompt()">Generate Prompt</button>
-      <button>Generate Random Creature</button>
+      <button onclick="generateRandomCreature()">Generate Random Creature</button>
     </div>
   </div>
 
@@ -252,7 +252,128 @@ ${ref}Generate a full-body isometric top-down token for use with FoundryVTT, sty
       const text = document.getElementById("output-box").innerText;
       navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
     }
-  </script>
+  
+function getRandomAdventurerValue(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+
+function generateRandomAdventurer() {
+  const genderList = ["Male", "Female", "Non-binary"];
+  const ancestryList = [
+    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
+    "Shoony", "Tengu", "Android", "Fetchling", "Ratfolk", "Skeleton", "Kitsune", "Tiefling", "Aasimar", "Nagaji", "Vanara",
+    "Strix", "Grippli", "Tripkee", "Kholo", "Gillman", "Ghoran", "Suli", "Ifrit", "Oread", "Sylph", "Undine", "Changeling",
+    "Duskwalker", "Nephilim", "Beastkin", "Poppet", "Sprite"
+  ];
+  const classList = [
+    "Alchemist", "Barbarian", "Bard", "Champion", "Cleric", "Druid", "Fighter", "Gunslinger", "Inventor", "Investigator",
+    "Kineticist", "Magus", "Monk", "Oracle", "Psychic", "Ranger", "Rogue", "Sorcerer", "Summoner", "Swashbuckler",
+    "Thaumaturge", "Witch", "Wizard", "Beastmaster", "Blessed One", "Marshal", "Scroll Trickster", "Toxicologist",
+    "Demolitionist", "Elementalist", "Strategist", "Battle Mage", "Exorcist", "Brawler", "Shadow Dancer", "Mystic Theurge",
+    "Spellblade", "Spiritualist", "Warden", "Warlock"
+  ];
+  const deityList = [
+    "Sarenrae", "Desna", "Pharasma", "Abadar", "Shelyn", "Iomedae", "Cayden Cailean", "Erastil", "Torag", "Gozreh",
+    "Nethys", "Gorum", "Asmodeus", "Urgathoa", "Zon-Kuthon", "Norgorber", "Calistria", "Lamashtu", "Rovagug", "Irori"
+  ];
+
+  const gender = getRandomAdventurerValue(genderList);
+  const ancestry = getRandomAdventurerValue(ancestryList);
+  let chosenClass = getRandomAdventurerValue(classList);
+
+  if (chosenClass === "Cleric" || chosenClass === "Champion") {
+    const deity = getRandomAdventurerValue(deityList);
+    chosenClass += " of " + deity;
+  }
+
+  document.getElementById("gender-adv").value = gender;
+  document.getElementById("ancestry-adv").value = ancestry;
+  document.getElementById("class-adv").value = chosenClass;
+  document.getElementById("hair-adv").value = "ancestry appropriate hair style and color";
+  document.getElementById("eyes-adv").value = "eye color or description appropriate to ancestry";
+  document.getElementById("traits-adv").value = "one or two unique physical traits appropriate to ancestry and class";
+  document.getElementById("clothes-adv").value = "armor or clothes appropriate to ancestry and class";
+  document.getElementById("gear-adv").value = "weapons and gear appropriate to ancestry and class";
+  document.getElementById("mood-adv").value = "a mood or demeanor fitting their class, such as stoic, zealous, cunning";
+}
+
+
+function generateRandomVillager() {
+  const genderList = ["Male", "Female", "Non-binary"];
+  const ancestryList = [
+    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
+    "Shoony", "Tengu", "Ratfolk", "Kitsune", "Tripkee", "Vanara", "Kholo", "Sprite", "Beastkin", "Ifrit", "Oread", "Sylph",
+    "Undine", "Changeling", "Duskwalker", "Poppet", "Suli", "Nephilim", "Ghoran", "Gillman", "Fetchling", "Strix", "Grippli",
+    "Skeleton", "Android", "Aasimar", "Tiefling"
+  ];
+  const occupationList = [
+    "Baker", "Blacksmith", "Merchant", "Town Crier", "Miscreant", "Fletcher", "Beggar", "Noble", "Healer", "Guard",
+    "Innkeeper", "Cook", "Miner", "Farmer", "Weaver", "Scribe", "Apothecary", "Fisher", "Tailor", "Carpenter",
+    "Barber", "Chandler", "Butcher", "Stablehand", "Tanner", "Beekeeper", "Herbalist", "Bookbinder", "Cartwright",
+    "Seamstress", "Potter", "Cobbler", "Candlemaker", "Glovemaker", "Painter", "Glassblower", "Hatter", "Juggler", "Mason", "Wainwright"
+  ];
+
+  document.getElementById("gender-vil").value = getRandomVillagerValue(genderList);
+  document.getElementById("ancestry-vil").value = getRandomVillagerValue(ancestryList);
+  document.getElementById("occupation-vil").value = getRandomVillagerValue(occupationList);
+  document.getElementById("hair-vil").value = "ancestry appropriate hair style and color";
+  document.getElementById("eyes-vil").value = "eye description appropriate to ancestry";
+  document.getElementById("traits-vil").value = "one or two unique physical traits";
+  document.getElementById("clothes-vil").value = "occupation-appropriate clothing or gear";
+  document.getElementById("gear-vil").value = "an item/tool/prop associated with their job or trade";
+  document.getElementById("mood-vil").value = "a mood or demeanor fitting their occupation, such as friendly or suspic {
+  const genderList = ["Male", "Female", "Non-binary"];
+  const ancestryList = ["Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
+                        "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
+                        "Shoony", "Tengu", "Ratfolk", "Kitsune", "Tripkee", "Vanara", "Kholo"];
+  const occupationList = ["Baker", "Blacksmith", "Merchant", "Town Crier", "Miscreant", "Fletcher", "Beggar", "Noble", 
+                          "Healer", "Guard", "Innkeeper", "Cook", "Miner", "Farmer", "Weaver", "Scribe", "Apothecary", 
+                          "Fisher", "Tailor", "Carpenter", "Barber", "Chandler", "Butcher", "Stablehand", "Tanner"];
+
+  document.getElementById("gender-vil").value = getRandomVillagerValue(genderList);
+  document.getElementById("ancestry-vil").value = getRandomVillagerValue(ancestryList);
+  document.getElementById("occupation-vil").value = getRandomVillagerValue(occupationList);
+  document.getElementById("hair-vil").value = "ancestry appropriate hair style and color";
+  document.getElementById("eyes-vil").value = "eye description appropriate to ancestry";
+  document.getElementById("traits-vil").value = "one or two unique physical traits";
+  document.getElementById("clothes-vil").value = "occupation-appropriate clothing or gear";
+  document.getElementById("gear-vil").value = "an item/tool/prop associated with their job or trade";
+  document.getElementById("mood-vil").value = "a mood or demeanor fitting their occupation, such as friendly or suspicious";
+}
+
+
+function getRandomCreatureValue(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+function generateRandomCreature() {
+  const familyList = ["Dragon", "Insect", "Undead", "Elemental", "Construct", "Aberration", "Fey", "Fiend", "Beast", "Plant",
+                      "Ooze", "Giant", "Humanoid", "Celestial", "Monitor", "Spirit", "Vermin", "Serpent", "Mimic", "Golem"];
+  const colorList = ["mottled scales", "iridescent feathers", "cracked obsidian hide", "bioluminescent carapace", 
+                     "translucent slime", "smoky mist", "veined crystal", "scorched fur", "vine-covered body", "glowing chitin"];
+  const featureList = ["six limbs", "spiked tail", "tentacled maw", "wings of bone", "molten claws", "mirror-like eyes",
+                       "pulsing runes", "shifting skin", "razor fins", "flaming breath"];
+  const faceList = ["glowing red eyes", "faceless void", "skull-like visage", "cluster of insectoid eyes", "piercing gaze"];
+  const moodList = ["aggressive", "curious", "regal", "stealthy", "menacing", "protective", "apathetic", "frenzied", "noble"];
+  const poseList = ["coiled to strike", "levitating", "prowling", "rearing back", "perched on a ledge", "charging forward"];
+
+  const specific = document.getElementById("specific-cre").checked;
+
+  if (specific) {
+    document.getElementById("name-cre").value = "Zergrak the Devourer";
+  } else {
+    document.getElementById("family-cre").value = getRandomCreatureValue(familyList);
+  }
+
+  document.getElementById("color-cre").value = getRandomCreatureValue(colorList);
+  document.getElementById("features-cre").value = getRandomCreatureValue(featureList);
+  document.getElementById("face-cre").value = getRandomCreatureValue(faceList);
+  document.getElementById("mood-cre").value = getRandomCreatureValue(moodList);
+  document.getElementById("pose-cre").value = getRandomCreatureValue(poseList);
+}
+
+</script>
 
 </body>
 </html>
