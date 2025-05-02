@@ -179,85 +179,32 @@
     <button onclick="copyPrompt()">Copy to Clipboard</button>
   </div>
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-
-    function toggleCreatureName() {
-      const isSpecific = document.getElementById("specific-cre").checked;
-      document.getElementById("name-field").style.display = isSpecific ? "block" : "none";
-      document.getElementById("family-field").style.display = isSpecific ? "none" : "block";
-    }
-
-    function generateAdventurerPrompt() {
-      const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
-      const g = document.getElementById("gender-adv").value;
-      const a = document.getElementById("ancestry-adv").value;
-      const c = document.getElementById("class-adv").value;
-      const h = document.getElementById("hair-adv").value;
-      const e = document.getElementById("eyes-adv").value;
-      const t = document.getElementById("traits-adv").value;
-      const cl = document.getElementById("clothes-adv").value;
-      const ge = document.getElementById("gear-adv").value;
-      const m = document.getElementById("mood-adv").value;
-
-      const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
-
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
-
-      document.getElementById("output-box").innerText = prompt;
-    }
-
-    function generateVillagerPrompt() {
-      const ref = document.getElementById("ref-vil").checked ? "Based on this reference image. " : "";
-      const g = document.getElementById("gender-vil").value;
-      const a = document.getElementById("ancestry-vil").value;
-      const o = document.getElementById("occupation-vil").value;
-      const h = document.getElementById("hair-vil").value;
-      const e = document.getElementById("eyes-vil").value;
-      const t = document.getElementById("traits-vil").value;
-      const cl = document.getElementById("clothes-vil").value;
-      const ge = document.getElementById("gear-vil").value;
-      const m = document.getElementById("mood-vil").value;
-
-      const prompt = `Enhance this prompt then generate the image from the enhanced prompt and display the enhanced prompt.
-
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
-
-      document.getElementById("output-box").innerText = prompt;
-    }
-
-    function generateCreaturePrompt() {
-      const ref = document.getElementById("ref-cre").checked ? "Based on this reference image. " : "";
-      const specific = document.getElementById("specific-cre").checked;
-      const name = document.getElementById("name-cre").value;
-      const fam = document.getElementById("family-cre").value;
-      const col = document.getElementById("color-cre").value;
-      const feat = document.getElementById("features-cre").value;
-      const face = document.getElementById("face-cre").value;
-      const mood = document.getElementById("mood-cre").value;
-      const pose = document.getElementById("pose-cre").value;
-
-      const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
-      const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
-
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
-
-      document.getElementById("output-box").innerText = prompt;
-    }
-
-    function copyPrompt() {
-      const text = document.getElementById("output-box").innerText;
-      navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
-    }
   
+<script>
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+}
+
+function toggleCreatureName() {
+  const isSpecific = document.getElementById("specific-cre").checked;
+  document.getElementById("name-field").style.display = isSpecific ? "block" : "none";
+  document.getElementById("family-field").style.display = isSpecific ? "none" : "block";
+}
+
 function getRandomAdventurerValue(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
+function getRandomVillagerValue(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
 
+function getRandomCreatureValue(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+// ADVENTURER
 function generateRandomAdventurer() {
   const genderList = ["Male", "Female", "Non-binary"];
   const ancestryList = [
@@ -281,7 +228,6 @@ function generateRandomAdventurer() {
   const gender = getRandomAdventurerValue(genderList);
   const ancestry = getRandomAdventurerValue(ancestryList);
   let chosenClass = getRandomAdventurerValue(classList);
-
   if (chosenClass === "Cleric" || chosenClass === "Champion") {
     const deity = getRandomAdventurerValue(deityList);
     chosenClass += " of " + deity;
@@ -298,7 +244,7 @@ function generateRandomAdventurer() {
   document.getElementById("mood-adv").value = "a mood or demeanor fitting their class, such as stoic, zealous, cunning";
 }
 
-
+// VILLAGER
 function generateRandomVillager() {
   const genderList = ["Male", "Female", "Non-binary"];
   const ancestryList = [
@@ -322,41 +268,56 @@ function generateRandomVillager() {
   document.getElementById("traits-vil").value = "one or two unique physical traits";
   document.getElementById("clothes-vil").value = "occupation-appropriate clothing or gear";
   document.getElementById("gear-vil").value = "an item/tool/prop associated with their job or trade";
-  document.getElementById("mood-vil").value = "a mood or demeanor fitting their occupation, such as friendly or suspic {
-  const genderList = ["Male", "Female", "Non-binary"];
-  const ancestryList = ["Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
-                        "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
-                        "Shoony", "Tengu", "Ratfolk", "Kitsune", "Tripkee", "Vanara", "Kholo"];
-  const occupationList = ["Baker", "Blacksmith", "Merchant", "Town Crier", "Miscreant", "Fletcher", "Beggar", "Noble", 
-                          "Healer", "Guard", "Innkeeper", "Cook", "Miner", "Farmer", "Weaver", "Scribe", "Apothecary", 
-                          "Fisher", "Tailor", "Carpenter", "Barber", "Chandler", "Butcher", "Stablehand", "Tanner"];
-
-  document.getElementById("gender-vil").value = getRandomVillagerValue(genderList);
-  document.getElementById("ancestry-vil").value = getRandomVillagerValue(ancestryList);
-  document.getElementById("occupation-vil").value = getRandomVillagerValue(occupationList);
-  document.getElementById("hair-vil").value = "ancestry appropriate hair style and color";
-  document.getElementById("eyes-vil").value = "eye description appropriate to ancestry";
-  document.getElementById("traits-vil").value = "one or two unique physical traits";
-  document.getElementById("clothes-vil").value = "occupation-appropriate clothing or gear";
-  document.getElementById("gear-vil").value = "an item/tool/prop associated with their job or trade";
   document.getElementById("mood-vil").value = "a mood or demeanor fitting their occupation, such as friendly or suspicious";
 }
 
+// CREATURE
 
 function getRandomCreatureValue(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
 function generateRandomCreature() {
-  const familyList = ["Dragon", "Insect", "Undead", "Elemental", "Construct", "Aberration", "Fey", "Fiend", "Beast", "Plant",
-                      "Ooze", "Giant", "Humanoid", "Celestial", "Monitor", "Spirit", "Vermin", "Serpent", "Mimic", "Golem"];
-  const colorList = ["mottled scales", "iridescent feathers", "cracked obsidian hide", "bioluminescent carapace", 
-                     "translucent slime", "smoky mist", "veined crystal", "scorched fur", "vine-covered body", "glowing chitin"];
-  const featureList = ["six limbs", "spiked tail", "tentacled maw", "wings of bone", "molten claws", "mirror-like eyes",
-                       "pulsing runes", "shifting skin", "razor fins", "flaming breath"];
-  const faceList = ["glowing red eyes", "faceless void", "skull-like visage", "cluster of insectoid eyes", "piercing gaze"];
-  const moodList = ["aggressive", "curious", "regal", "stealthy", "menacing", "protective", "apathetic", "frenzied", "noble"];
-  const poseList = ["coiled to strike", "levitating", "prowling", "rearing back", "perched on a ledge", "charging forward"];
+  const familyList = [
+    "Dragon", "Insect", "Undead", "Elemental", "Construct", "Aberration", "Fey", "Fiend", "Beast", "Plant",
+    "Ooze", "Giant", "Humanoid", "Celestial", "Monitor", "Spirit", "Vermin", "Serpent", "Mimic", "Golem",
+    "Slime", "Wyrm", "Titan", "Mythical Beast", "Reptile", "Avian", "Shade", "Demon", "Devil", "Machine"
+  ];
+  const colorList = [
+    "mottled scales", "iridescent feathers", "cracked obsidian hide", "bioluminescent carapace", "translucent slime",
+    "smoky mist", "veined crystal", "scorched fur", "vine-covered body", "glowing chitin",
+    "ashen bone", "charcoal black", "glittering gold", "mossy green", "sandy rough hide",
+    "smeared bloodstains", "slick oil", "opal-sheened skin", "crystalline facets", "pale blue frost",
+    "shadowy void pattern", "ember-streaked skin", "iron-plated texture", "rust-speckled finish", "lava cracks",
+    "magma veining", "cloud-patterned form", "gleaming white scales", "frozen glassy body", "multi-hued shimmer"
+  ];
+  const featureList = [
+    "six limbs", "spiked tail", "tentacled maw", "wings of bone", "molten claws",
+    "mirror-like eyes", "pulsing runes", "shifting skin", "razor fins", "flaming breath",
+    "hooked beak", "armored plates", "back-borne eyes", "multiple heads", "bladed wings",
+    "tail made of vines", "limbs ending in stingers", "sulfurous smoke emissions", "levitating crystals", "swarming wasps body",
+    "arcane glyphs", "tail of flame", "tendrils of shadow", "stone-like skin", "roots instead of feet",
+    "jagged spines", "antlered skull", "tongue of lightning", "dripping slime fangs", "living armor grafts"
+  ];
+  const faceList = [
+    "glowing red eyes", "faceless void", "skull-like visage", "cluster of insectoid eyes", "piercing gaze",
+    "glimmering white orbs", "dripping sockets", "grinning fang-maw", "blank mask face", "stone-chiseled glare",
+    "burning eye slits", "circular saw mouth", "ethereal flickering stare", "crystalline face", "split mandibles",
+    "nested eyes", "vertical mouth slit", "tar-leaking sockets", "etched bone helm", "branchlike protrusions"
+  ];
+  const moodList = [
+    "aggressive", "curious", "regal", "stealthy", "menacing", "protective", "apathetic", "frenzied", "noble",
+    "playful", "vigilant", "ancient", "sleepy", "aloof", "scheming", "wild-eyed", "ravenous", "territorial", "tactical", "snarling",
+    "unblinking", "distracted", "meditative", "feral", "jittery", "commanding", "vengeful", "solemn", "cautious", "skittish"
+  ];
+  const poseList = [
+    "coiled to strike", "levitating", "prowling", "rearing back", "perched on a ledge", "charging forward",
+    "crouched low", "floating in mist", "spread-eagled in midair", "snaking around a pillar", "reaching out",
+    "towering over prey", "nestled in ruins", "emerging from shadows", "digging with claws", "mid-pounce",
+    "climbing a wall", "writhing on the ground", "lashing tail", "snapping jaws",
+    "standing upright", "skittering sideways", "balanced on one foot", "slithering around bones", "guarding treasure",
+    "wrapped in tendrils", "emitting smoke", "shimmering mid-phase", "locked in place", "bending backward unnaturally"
+  ];
 
   const specific = document.getElementById("specific-cre").checked;
 
@@ -373,7 +334,13 @@ function generateRandomCreature() {
   document.getElementById("pose-cre").value = getRandomCreatureValue(poseList);
 }
 
+
+function copyPrompt() {
+  const text = document.getElementById("output-box").innerText;
+  navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
+}
 </script>
+
 
 </body>
 </html>
