@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>PF2e Token Prompt Generator for ChatGPT</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+body {
+    background-color: #2b1e16;
+    font-family: 'Georgia', serif;
+    color: #f4e5c1;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #d4af37;
+    text-align: center;
+}
+
+input, textarea, button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    background-color: #8b5e3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a9744f;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.switch input { display: none; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #d4af37;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.subtext {
+    font-size: 12px;
+    color: #c2b49d;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#randomImagesContainer img {
+  transform: scale(1.5);       
+  display: inline-block;
+
+
+
+</style></head>
+<body>
+<div class="container">
+<h1>PF2e Token Prompt Generator for ChatGPT</h1>
+<label class="switch">
+<input id="referenceToggle" type="checkbox"/>
+<span class="slider"></span>
+</label>
+<label class="toggle-label" for="referenceToggle">Provide an optional reference picture</label>
+<p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
+<form id="tokenForm">
+<input id="gender" placeholder="Gender" type="text"/>
+<input id="ancestry" placeholder="Ancestry" type="text"/>
+<input id="class" placeholder="Class" type="text"/>
+<input id="hair" placeholder="Hair style and color" type="text"/>
+<input id="eyes" placeholder="Eye color/details" type="text"/>
+<input id="unique" placeholder="Other unique physical details" type="text"/>
+<input id="clothing" placeholder="Clothing or armor details" type="text"/>
+<input id="weapon" placeholder="Weapon or gear details" type="text"/>
+<button onclick="generatePrompt()" type="button">Generate Prompt</button>
+<button onclick="generateRandomCharacter()" type="button">Generate Random Character</button>
+</form>
+<textarea id="output" placeholder="Your enhanced prompt will appear here..." rows="12"></textarea>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
+<div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
+<script src="script.js"></script>
+</div>
+<script>function generatePrompt() {
+    const gender = document.getElementById("gender").value;
+    const ancestry = document.getElementById("ancestry").value;
+    const charClass = document.getElementById("class").value;
+    const hair = document.getElementById("hair").value;
+    const eyes = document.getElementById("eyes").value;
+    const unique = document.getElementById("unique").value;
+    const clothing = document.getElementById("clothing").value;
+    const weapon = document.getElementById("weapon").value;
+    const referenceToggle = document.getElementById("referenceToggle").checked;
+
+    let prompt = "Enhance this prompt and then generate an image based off the enhanced prompt:\n\n";
+
+    if (referenceToggle) {
+        prompt += "Based off this reference picture\n";
+    }
+
+    prompt += "Display new enhanced prompt first\n\n";
+    prompt += `Then generate a full body isometric top-down token .png with transparent background for use with PF2e on FoundryVTT.\n` +
+              `The token is of a ${gender} ${ancestry} ${charClass} with ${hair}, ${eyes}, and ${unique}.\n` +
+              `They are wearing ${clothing}, and wielding ${weapon}.\n` +
+              `The style is that of detailed D&D artwork. The token should be a png file and have a transparent background.`;
+
+    document.getElementById("output").value = prompt;
+}
+
+function copyToClipboard() {
+    const output = document.getElementById("output");
+    output.select();
+    output.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(output.value).then(() => {
+        alert("Prompt copied to clipboard!");
+    });
+}
+
+
+function generateRandomCharacter() {
+    const gods = ["Sarenrae", "Desna", "Pharasma", "Gorum", "Urgathoa", "Iomedae", "Cayden Cailean", "Abadar", "Lamashtu", "Asmodeus"];
+
+    const genders = ["male", "female", "androgynous", "nonbinary"];
+    const ancestries = ["human", "elf", "dwarf", "gnome", "halfling", "orc", "goblin", "tengu", "leshy", "catfolk",
+                        "kobold", "lizardfolk", "ratfolk", "sylph", "ifrit", "undine", "fetchling", "changeling", "strix", "gnoll"];
+    const classes = ["fighter", "rogue", "cleric", "wizard", "ranger", "barbarian", "druid", "sorcerer", "alchemist", "champion", "monk", "bard", "investigator", "gunslinger", "swashbuckler"];
+    const hairs = ["braided black hair", "spiky red hair", "short silver hair", "long golden curls", "bald", "mohawk", "green dreadlocks"];
+    const eyes = ["glowing blue eyes", "amber eyes", "mismatched eyes", "cat-like pupils", "fiery red eyes"];
+    const uniques = ["crystal embedded in forehead", "scars across cheeks", "ethereal aura", "tattoos that shift", "mechanical limb"];
+    const clothes = ["obsidian plate armor", "fur-lined robes", "weathered leather tunic", "bright ceremonial garb"];
+    const weapons = ["greatsword with lightning runes", "hooked scythe", "crystal-tipped spear", "ice-bladed longsword", "bone-handled dagger"];
+
+    document.getElementById("gender").value = randomChoice(genders);
+    document.getElementById("ancestry").value = randomChoice(ancestries);
+    const selectedClass = randomChoice(classes);
+    document.getElementById("class").value = selectedClass;
+
+    // Append deity if class is cleric or champion
+    if (selectedClass === "cleric") {
+        document.getElementById("class").value += " of " + randomChoice(gods);
+    } else if (selectedClass === "champion") {
+        document.getElementById("class").value += " of " + randomChoice(gods);
+    }
+    document.getElementById("hair").value = "Random hair style and color appropriate for ancestry";
+    document.getElementById("eyes").value = randomChoice(eyes);
+    document.getElementById("unique").value = "Random unique physical attributes appropriate for ancestry and class";
+    document.getElementById("clothing").value = "Random armor or clothes appropriate to ancestry and class";
+    document.getElementById("weapon").value = "Random weapons and gear appropriate to ancestry and class";
+}
+
+function randomChoice(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+</script></body>
+<link href="styles.css" rel="stylesheet"/>
+</html>
