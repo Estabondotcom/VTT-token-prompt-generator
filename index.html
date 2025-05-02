@@ -190,7 +190,7 @@ input[type="checkbox"] {
 </div>
 <div class="tab" id="adventurerTab" style="display: block;">
 <div class="container">
-<label class="switch"><span class="slider"></span></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div></div></div>
+<label class="switch"></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div></div>
 <form id="tokenForm">
 <label for="gender">Gender:</label><input id="gender" placeholder="e.g., male, female, nonbinary" type="text"/>
 <label for="ancestry">Ancestry:</label><input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
@@ -202,7 +202,7 @@ input[type="checkbox"] {
 <label for="weapon">Weapons or Gear:</label><input id="weapon" placeholder="e.g., curved dagger, rune-inscribed staff" type="text"/>
 </form>
 </div>
-<div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
+
 <script src="script.js"></script>
 <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button><button onclick="copyToClipboard()">Copy to Clipboard</button></div></div></div>
 <div class="tab" id="villagerTab" style="display: none;">
@@ -228,11 +228,11 @@ input[type="checkbox"] {
 <input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
 <label for="demeanor">Mood or Demeanor:</label>
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-<div></div>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px auto;"></div><div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div></div>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div></div>
 <div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
-<label class="switch"><span class="slider"></span></label><div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px auto; max-width: 600px;"></div>
+<label class="switch"></label>
 </div>
 <div id="specificFields">
 <label for="name">Creature Name:</label>
@@ -256,9 +256,9 @@ input[type="checkbox"] {
 <label for="pose">Creature Pose:</label>
 <input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
 </div>
-<div></div>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 10px auto;"></div><div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div></div>
-<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
+
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div></div>
+
 <script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
