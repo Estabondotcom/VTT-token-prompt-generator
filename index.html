@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Unified PF2e Token Prompt Generator</title>
+    <title>PF2e Token Prompt Generator</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .tab {
@@ -30,53 +30,44 @@
 </head>
 <body>
 <div class="container">
-    <h1>Unified PF2e Token Prompt Generator</h1>
+    <h1>PF2e Token Prompt Generator</h1>
     <div class="tab-buttons">
-        <button onclick="switchTab('characterTab')" id="charBtn" class="active">Character</button>
-        <button onclick="switchTab('monsterTab')" id="monBtn">Monster</button>
-        <button onclick="switchTab('specificTab')" id="specBtn">Specific Creature</button>
+        <button onclick="switchTab('villagerTab')" id="villagerBtn" class="active">Villager</button>
+        <button onclick="switchTab('monsterTab')" id="monsterBtn">Monster</button>
+        <button onclick="switchTab('heroTab')" id="heroBtn">Adventurer</button>
     </div>
 
-    <div id="characterTab" class="tab" style="display: block;">
-        <!-- Character generator form here -->
+    <div id="villagerTab" class="tab" style="display: block;">
         
-<h1>PF2e Token Prompt Generator</h1>
-<div class="toggle">
-<label for="referenceToggle">Will you be providing a reference image?</label>
+<div class="container">
+<h1>PF2e Token Prompt Generator for ChatGPT</h1>
+<label class="switch">
 <input id="referenceToggle" type="checkbox"/>
+<span class="slider"></span>
+</label>
+<label class="toggle-label" for="referenceToggle">Provide an optional reference picture</label>
+<p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
+<form id="tokenForm">
+<input id="gender" placeholder="Gender" type="text"/>
+<input id="ancestry" placeholder="Ancestry" type="text"/>
+<input id="class" placeholder="Class" type="text"/>
+<input id="hair" placeholder="Hair style and color" type="text"/>
+<input id="eyes" placeholder="Eye color/details" type="text"/>
+<input id="unique" placeholder="Other unique physical details" type="text"/>
+<input id="clothing" placeholder="Clothing or armor details" type="text"/>
+<input id="weapon" placeholder="Weapon or gear details" type="text"/>
+<button onclick="generatePrompt()" type="button">Generate Prompt</button>
+<button onclick="generateRandomCharacter()" type="button">Generate Random Character</button>
+</form>
+<textarea id="output" placeholder="Your enhanced prompt will appear here..." rows="12"></textarea>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
+<div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
+<script src="script.js"></script>
 </div>
-<label for="gender">Gender:</label>
-<select id="gender">
-<option value="male">male</option>
-<option value="female">female</option>
-<option value="non-binary">non-binary</option>
-</select>
-<label for="ancestry">Ancestry:</label>
-<input id="ancestry" placeholder="e.g., elf, dwarf, goblin" type="text"/>
-<label for="occupation">Occupation:</label>
-<input id="occupation" placeholder="e.g., blacksmith, herbalist, merchant" type="text"/>
-<label for="hair">Hair Style and Color:</label>
-<input id="hair" placeholder="e.g., braided silver hair" type="text"/>
-<label for="eyes">Eye Description:</label>
-<input id="eyes" placeholder="e.g., piercing blue eyes" type="text"/>
-<label for="traits">Unique Physical Traits:</label>
-<input id="traits" placeholder="e.g., a missing finger, glowing tattoos" type="text"/>
-<label for="clothing">Occupation-Appropriate Clothing or Gear:</label>
-<input id="clothing" placeholder="e.g., soot-covered apron and leather gloves" type="text"/>
-<label for="item">Item/Tool/Prop Associated with Job:</label>
-<input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
-<label for="demeanor">Mood or Demeanor:</label>
-<input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-<button onclick="generatePrompt()">Generate Prompt</button>
-<button onclick="fillRandomVillager()">Generate Random Villager</button>
-<div id="output"></div>
-<button onclick="copyToClipboard()">Copy Prompt to Clipboard</button>
-
 
     </div>
 
     <div id="monsterTab" class="tab">
-        <!-- Monster generator form here -->
         
 <h1>PF2e Monster Prompt Generator</h1>
 <div class="toggle">
@@ -117,11 +108,50 @@
 
     </div>
 
-    <div id="specificTab" class="tab">
-        <!-- Specific creature generator form here -->
+    <div id="heroTab" class="tab">
         
-    <p>This form uses the same layout as the Monster Generator, just toggle "Is this a specific PF2e creature?" checkbox above to 'Yes'.</p>
-    
+<div class="toggle">
+    <label for="heroReferenceToggle">Will you be providing a reference image?</label>
+    <input type="checkbox" id="heroReferenceToggle">
+</div>
+
+<label for="heroGender">Gender:</label>
+<select id="heroGender">
+  <option value="male">male</option>
+  <option value="female">female</option>
+  <option value="non-binary">non-binary</option>
+</select>
+
+<label for="heroAncestry">Ancestry:</label>
+<input type="text" id="heroAncestry" placeholder="e.g., elf, dwarf, goblin">
+
+<label for="heroClass">Class:</label>
+<input type="text" id="heroClass" placeholder="e.g., fighter, rogue, cleric">
+
+<label for="heroHair">Hair Style and Color:</label>
+<input type="text" id="heroHair" placeholder="Random ancestry appropriate hair style and color">
+
+<label for="heroEyes">Eye Description:</label>
+<input type="text" id="heroEyes" placeholder="Eye description">
+
+<label for="heroTraits">Unique Physical Traits:</label>
+<input type="text" id="heroTraits" placeholder="Unique physical traits appropriate for ancestry and class">
+
+<label for="heroArmor">Armor or Clothes:</label>
+<input type="text" id="heroArmor" placeholder="Random armor or clothes appropriate to ancestry and class">
+
+<label for="heroWeapons">Weapons and Gear:</label>
+<input type="text" id="heroWeapons" placeholder="Random weapons and gear appropriate to ancestry and class">
+
+<label for="heroDemeanor">Mood or Demeanor:</label>
+<input type="text" id="heroDemeanor" placeholder="Mood or demeanor fitting the class">
+
+<button onclick="generateHeroPrompt()">Generate Prompt</button>
+<button onclick="fillRandomHero()">Generate Random Hero</button>
+
+<div id="heroOutput"></div>
+<button onclick="copyHeroPromptToClipboard()">Copy Prompt to Clipboard</button>
+
     </div>
 </div>
 
@@ -131,79 +161,83 @@ function switchTab(tabId) {
     document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
     document.getElementById(tabId).style.display = 'block';
 
-    if (tabId === 'characterTab') document.getElementById('charBtn').classList.add('active');
-    else if (tabId === 'monsterTab') document.getElementById('monBtn').classList.add('active');
-    else if (tabId === 'specificTab') document.getElementById('specBtn').classList.add('active');
+    if (tabId === 'villagerTab') document.getElementById('villagerBtn').classList.add('active');
+    else if (tabId === 'monsterTab') document.getElementById('monsterBtn').classList.add('active');
+    else if (tabId === 'heroTab') document.getElementById('heroBtn').classList.add('active');
+}
+</script>
+<script>function generatePrompt() {
+    const gender = document.getElementById("gender").value;
+    const ancestry = document.getElementById("ancestry").value;
+    const charClass = document.getElementById("class").value;
+    const hair = document.getElementById("hair").value;
+    const eyes = document.getElementById("eyes").value;
+    const unique = document.getElementById("unique").value;
+    const clothing = document.getElementById("clothing").value;
+    const weapon = document.getElementById("weapon").value;
+    const referenceToggle = document.getElementById("referenceToggle").checked;
+
+    let prompt = "Enhance this prompt and then generate an image based off the enhanced prompt:\n\n";
+
+    if (referenceToggle) {
+        prompt += "Based off this reference picture\n";
+    }
+
+    prompt += "Display new enhanced prompt first\n\n";
+    prompt += `Then generate a full body isometric top-down token .png with transparent background for use with PF2e on FoundryVTT.\n` +
+              `The token is of a ${gender} ${ancestry} ${charClass} with ${hair}, ${eyes}, and ${unique}.\n` +
+              `They are wearing ${clothing}, and wielding ${weapon}.\n` +
+              `The style is that of detailed D&D artwork. The token should be a png file and have a transparent background.`;
+
+    document.getElementById("output").value = prompt;
+}
+
+function copyToClipboard() {
+    const output = document.getElementById("output");
+    output.select();
+    output.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(output.value).then(() => {
+        alert("Prompt copied to clipboard!");
+    });
+}
+
+
+function generateRandomCharacter() {
+    const gods = ["Sarenrae", "Desna", "Pharasma", "Gorum", "Urgathoa", "Iomedae", "Cayden Cailean", "Abadar", "Lamashtu", "Asmodeus"];
+
+    const genders = ["male", "female", "androgynous", "nonbinary"];
+    const ancestries = ["human", "elf", "dwarf", "gnome", "halfling", "orc", "goblin", "tengu", "leshy", "catfolk",
+                        "kobold", "lizardfolk", "ratfolk", "sylph", "ifrit", "undine", "fetchling", "changeling", "strix", "gnoll"];
+    const classes = ["fighter", "rogue", "cleric", "wizard", "ranger", "barbarian", "druid", "sorcerer", "alchemist", "champion", "monk", "bard", "investigator", "gunslinger", "swashbuckler"];
+    const hairs = ["braided black hair", "spiky red hair", "short silver hair", "long golden curls", "bald", "mohawk", "green dreadlocks"];
+    const eyes = ["glowing blue eyes", "amber eyes", "mismatched eyes", "cat-like pupils", "fiery red eyes"];
+    const uniques = ["crystal embedded in forehead", "scars across cheeks", "ethereal aura", "tattoos that shift", "mechanical limb"];
+    const clothes = ["obsidian plate armor", "fur-lined robes", "weathered leather tunic", "bright ceremonial garb"];
+    const weapons = ["greatsword with lightning runes", "hooked scythe", "crystal-tipped spear", "ice-bladed longsword", "bone-handled dagger"];
+
+    document.getElementById("gender").value = randomChoice(genders);
+    document.getElementById("ancestry").value = randomChoice(ancestries);
+    const selectedClass = randomChoice(classes);
+    document.getElementById("class").value = selectedClass;
+
+    // Append deity if class is cleric or champion
+    if (selectedClass === "cleric") {
+        document.getElementById("class").value += " of " + randomChoice(gods);
+    } else if (selectedClass === "champion") {
+        document.getElementById("class").value += " of " + randomChoice(gods);
+    }
+    document.getElementById("hair").value = "Random hair style and color appropriate for ancestry";
+    document.getElementById("eyes").value = randomChoice(eyes);
+    document.getElementById("unique").value = "Random unique physical attributes appropriate for ancestry and class";
+    document.getElementById("clothing").value = "Random armor or clothes appropriate to ancestry and class";
+    document.getElementById("weapon").value = "Random weapons and gear appropriate to ancestry and class";
+}
+
+function randomChoice(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 </script>
 <script>
-    const ancestries = [
-      "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
-      "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
-      "tripkee", "vanara", "kholo", "shoony"
-    ];
-
-    const genders = ["male", "female", "non-binary"];
-
-    const occupations = [
-      "blacksmith", "herbalist", "merchant", "innkeeper", "guard", "fisher", "tailor", "scribe",
-      "baker", "shepherd", "hunter", "carpenter", "jeweler", "brewer", "librarian", "mason",
-      "cook", "tanner", "fletcher", "noble", "beggar", "miscreant", "town crier"
-    ];
-
-    function fillRandomVillager() {
-    const randomGender = genders[Math.floor(Math.random() * genders.length)];
-    const randomAncestry = ancestries[Math.floor(Math.random() * ancestries.length)];
-    const randomOccupation = occupations[Math.floor(Math.random() * occupations.length)];
-
-    document.getElementById("gender").value = randomGender;
-    document.getElementById("ancestry").value = randomAncestry;
-    document.getElementById("occupation").value = randomOccupation;
-    document.getElementById("hair").value = "[random ancestry appropriate hair style and color]";
-    document.getElementById("eyes").value = "[eye description]";
-    document.getElementById("traits").value = "[one or two unique physical traits]";
-    document.getElementById("clothing").value = "[occupation-appropriate clothing or gear]";
-    document.getElementById("item").value = "[an item/tool/prop associated with their job or trade]";
-    document.getElementById("demeanor").value = "[a mood or demeanor fitting their occupation, such as focused, friendly, suspicious, etc.]";
-  }
-
-    function generatePrompt() {
-      const prefix = "enhance this prompt and then generate a token based off the enhanced prompt";
-      const refToggle = document.getElementById("referenceToggle").checked;
-      const refText = refToggle ? "based off this reference image\n" : "";
-
-      const gender = document.getElementById("gender").value;
-      const ancestry = document.getElementById("ancestry").value;
-      const occupation = document.getElementById("occupation").value;
-      const hair = document.getElementById("hair").value;
-      const eyes = document.getElementById("eyes").value;
-      const traits = document.getElementById("traits").value;
-      const clothing = document.getElementById("clothing").value;
-      const item = document.getElementById("item").value;
-      const demeanor = document.getElementById("demeanor").value;
-
-      const prompt = `${prefix}\n\n${refText}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork.\n` +
-        `The token is of a ${gender} ${ancestry} ${occupation} with ${hair}, ${eyes}, and ${traits}.\n` +
-        `They are wearing ${clothing} and holding or carrying ${item}.\n` +
-        `Their posture and facial expression should reflect ${demeanor}.\n` +
-        `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
-
-      document.getElementById("output").innerText = prompt;
-    }
-  
-  function copyToClipboard() {
-    const output = document.getElementById("output").innerText;
-    if (!output) {
-      alert("No prompt to copy!");
-      return;
-    }
-    navigator.clipboard.writeText(output).then(() => {
-      alert("Prompt copied to clipboard!");
-    }).catch(err => {
-      alert("Failed to copy text: " + err);
-    });
-  }
-</script><script>
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
@@ -284,5 +318,62 @@ function switchTab(tabId) {
       });
     }
   window.onload = toggleFields;
-</script></body>
+</script>
+<script>
+function fillRandomHero() {
+    const genders = ["male", "female", "non-binary"];
+    const ancestries = ["elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk", "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin", "tripkee", "vanara", "kholo", "shoony"];
+    const classes = ["fighter", "rogue", "cleric", "wizard", "barbarian", "champion", "sorcerer", "ranger", "monk", "alchemist", "bard", "druid"];
+    const gods = ["Abadar", "Calistria", "Desna", "Erastil", "Gorum", "Iomedae", "Nethys", "Pharasma", "Sarenrae", "Shelyn", "Torag", "Urgathoa", "Zon-Kuthon"];
+    const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+
+    const gender = rand(genders);
+    const ancestry = rand(ancestries);
+    const pClass = rand(classes);
+    const god = rand(gods);
+
+    document.getElementById("heroGender").value = gender;
+    document.getElementById("heroAncestry").value = ancestry;
+    document.getElementById("heroClass").value = (pClass === "cleric" || pClass === "champion") ? `${pClass} of ${god}` : pClass;
+    document.getElementById("heroHair").value = "Random hair style and color appropriate for ancestry";
+    document.getElementById("heroEyes").value = "Fiery red eyes";
+    document.getElementById("heroTraits").value = "Random unique physical attributes appropriate for ancestry and class";
+    document.getElementById("heroArmor").value = "Random armor or clothes appropriate to ancestry and class";
+    document.getElementById("heroWeapons").value = "Random weapons and gear appropriate to ancestry and class";
+    document.getElementById("heroDemeanor").value = "Focused and determined";
+}
+
+function generateHeroPrompt() {
+    const refToggle = document.getElementById("heroReferenceToggle").checked;
+    const refText = refToggle ? "based off this reference image\n" : "";
+
+    const gender = document.getElementById("heroGender").value;
+    const ancestry = document.getElementById("heroAncestry").value;
+    const pClass = document.getElementById("heroClass").value;
+    const hair = document.getElementById("heroHair").value;
+    const eyes = document.getElementById("heroEyes").value;
+    const traits = document.getElementById("heroTraits").value;
+    const armor = document.getElementById("heroArmor").value;
+    const weapons = document.getElementById("heroWeapons").value;
+    const demeanor = document.getElementById("heroDemeanor").value;
+
+    const prompt = `enhance this prompt and then generate a token based off the enhanced prompt\n\n${refText}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork.\n` +
+        `The token is of a ${gender} ${ancestry} ${pClass} with ${hair}, ${eyes}, and ${traits}.\n` +
+        `They are wearing ${armor}, and wielding ${weapons}.\n` +
+        `Their posture and facial expression should reflect ${demeanor}.\n` +
+        `The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+    document.getElementById("heroOutput").innerText = prompt;
+}
+
+function copyHeroPromptToClipboard() {
+    const output = document.getElementById("heroOutput").innerText;
+    navigator.clipboard.writeText(output).then(() => {
+        alert("Prompt copied to clipboard!");
+    }).catch(err => {
+        alert("Failed to copy text: " + err);
+    });
+}
+</script>
+</body>
 </html>
