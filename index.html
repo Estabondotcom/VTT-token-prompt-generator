@@ -132,6 +132,7 @@
     <div class="action-buttons">
       <button onclick="generateAdventurerPrompt()">Generate Prompt</button>
       <button onclick="generateRandomAdventurer()">Generate Random Adventurer</button>
+<button onclick="clearAdventurerFields()">Clear Fields</button>
     </div>
   </div>
 
@@ -152,6 +153,7 @@
     <div class="action-buttons">
       <button onclick="generateVillagerPrompt()">Generate Prompt</button>
       <button onclick="generateRandomVillager()">Generate Random Villager</button>
+<button onclick="clearVillagerFields()">Clear Fields</button>
     </div>
   </div>
 
@@ -173,6 +175,7 @@
     <div class="action-buttons">
       <button onclick="generateCreaturePrompt()">Generate Prompt</button>
       <button onclick="generateRandomCreature()">Generate Random Creature</button>
+<button onclick="clearCreatureFields()">Clear Fields</button>
     </div>
   </div>
 
@@ -405,6 +408,31 @@ document.querySelectorAll('input').forEach(input => {
     input.style.color = 'black';
   });
 });
+
+
+function clearAdventurerFields() {
+  ['gender-adv','ancestry-adv','class-adv','hair-adv','eyes-adv','traits-adv','clothes-adv','gear-adv','mood-adv'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.style.color = 'grey';
+  });
+}
+
+function clearVillagerFields() {
+  ['gender-vil','ancestry-vil','occupation-vil','hair-vil','eyes-vil','traits-vil','clothes-vil','gear-vil','mood-vil'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.style.color = 'grey';
+  });
+}
+
+function clearCreatureFields() {
+  ['name-cre','family-cre','color-cre','features-cre','face-cre','mood-cre','pose-cre'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.style.color = 'grey';
+  });
+}
 
 </script>
 
