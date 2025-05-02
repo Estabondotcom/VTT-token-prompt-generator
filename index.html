@@ -168,6 +168,11 @@ input[type="checkbox"] {
     margin: 0 10px 0 0;
     vertical-align: middle;
 }
+
+
+button:hover {
+  background-color: #4d1a18;
+}
 </style><style>
 .tab-buttons button {
     font-size: 2em !important;
@@ -202,8 +207,7 @@ input[type="checkbox"] {
 <label for="weapon">Weapons or Gear:</label><input id="weapon" placeholder="e.g., curved dagger, rune-inscribed staff" type="text"/>
 </form>
 </div>
-
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button></div><div id="adventurerOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()" type="button">Generate Prompt</button><button onclick="generateRandomCharacter()" type="button">Generate Random Character</button><button onclick="navigator.clipboard.writeText(document.getElementById('adventurerOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="adventurerOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div></div>
 <div class="tab" id="villagerTab" style="display: none;">
 <label for="gender">Gender:</label>
 <select id="gender">
@@ -227,7 +231,7 @@ input[type="checkbox"] {
 <input id="item" placeholder="e.g., a heavy iron hammer" type="text"/>
 <label for="demeanor">Mood or Demeanor:</label>
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button></div><div id="villagerOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generatePrompt()">Generate Prompt</button><button onclick="fillRandomVillager()">Generate Random Villager</button><button onclick="navigator.clipboard.writeText(document.getElementById('villagerOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="villagerOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div>
 <div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
 <label class="switch"></label>
@@ -254,11 +258,7 @@ input[type="checkbox"] {
 <label for="pose">Creature Pose:</label>
 <input id="pose" placeholder="e.g., rearing up, crouching, flying" type="text"/>
 </div>
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button></div><div id="creatureOutput" style="margin-top: 20px; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line;"></div></div>
-
-
-
-
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px;"><button onclick="generateMonsterPrompt()">Generate Creature Prompt</button><button onclick="generateRandom()">Generate Random Creature</button><button onclick="navigator.clipboard.writeText(document.getElementById('creatureOutput').innerText)" style="background-color: #672320; color: #ffffff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Copy Prompt</button></div><div id="creatureOutput" style="margin: 20px auto; background-color: #cbc18e; padding: 15px; border-radius: 5px; border: 1px solid #672320; white-space: pre-line; width: 120%; max-width: 720px; font-size: 1em;"><span style="color: #672320; font-style: italic;">Your generated prompt will appear here.</span></div></div>
 <script>function generatePrompt() {
     const gender = document.getElementById("gender").value;
     const ancestry = document.getElementById("ancestry").value;
