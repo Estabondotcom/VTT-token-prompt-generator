@@ -133,10 +133,12 @@
 
 input {
   color: black;
+  font-weight: 600;
 }
 
 input::placeholder {
   color: #888888;
+  font-weight: 500;
 }
 
 </style>
@@ -395,7 +397,7 @@ function generateAdventurerPrompt() {
 
   const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
@@ -414,7 +416,7 @@ function generateVillagerPrompt() {
 
   const prompt = `Enhance this prompt then generate the image from the enhanced prompt and display the enhanced prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
@@ -433,7 +435,7 @@ function generateCreaturePrompt() {
   const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
   const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
