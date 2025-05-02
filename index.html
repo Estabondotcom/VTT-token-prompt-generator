@@ -121,6 +121,27 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+
+.container {
+    text-align: center;
+}
+
+label,
+.switch-wrapper span {
+    display: block;
+    text-align: left;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+input[type="text"],
+select,
+textarea,
+#unifiedOutput {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style></head>
 <body>
 <header style="text-align: center; padding: 30px 0;">
@@ -136,7 +157,7 @@ input:checked + .slider:before {
 </div>
 <div class="tab" id="adventurerTab" style="display: block;">
 <div class="container">
-<label class="switch"><span class="slider"></span></label>
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label class="toggle-label" for="referenceToggle">Provide an optional reference picture</label>
 <p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
 <form id="tokenForm">
 <label for="gender">Gender:</label><input id="gender" placeholder="e.g., male, female, nonbinary" type="text"/>
@@ -156,7 +177,7 @@ input:checked + .slider:before {
 </div></div>
 <div class="tab" id="villagerTab" style="display: none;">
 <div class="toggle">
-<label class="switch"><span class="slider"></span></label>
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
 </div>
 <label for="gender">Gender:</label>
 <select id="gender">
@@ -186,10 +207,10 @@ input:checked + .slider:before {
 <button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div>
 <div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
-<label class="switch"><span class="slider"></span></label>
+<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
 </div>
 <div class="toggle">
-<label class="switch"><span class="slider"></span></label>
+<label class="switch"><input id="specificToggle" type="checkbox"/><span class="slider"></span></label><label for="specificToggle">Is this a specific PF2e creature?</label>
 </div>
 <div id="specificFields">
 <label for="name">Creature Name:</label>
