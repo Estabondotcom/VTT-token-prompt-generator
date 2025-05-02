@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VTT Token Prompt Generator for ChatGPT</title>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #3b2f2f;
+      color: #f5e175;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'MedievalSharp', cursive;
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .tab-buttons button {
+      font-size: 1.5em;
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #a63232;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .field-group {
+      margin: 15px 0;
+    }
+
+    .field-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 8px;
+      font-size: 1em;
+    }
+
+    .switch-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .switch-group input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .action-buttons {
+      margin: 15px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons button {
+      font-size: 1.2em;
+      padding: 10px;
+      background-color: #a63232;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #output-box {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff3dc;
+      color: black;
+      font-size: 1.1em;
+      min-height: 150px;
+      border: 2px solid #a63232;
+      border-radius: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>VTT Token Prompt Generator for ChatGPT</h1>
+
+  <div class="tab-buttons">
+    <button onclick="showTab('adventurer')">Adventurer</button>
+    <button onclick="showTab('villager')">Villager</button>
+    <button onclick="showTab('creature')">Creature</button>
+  </div>
+
+  <!-- Adventurer Tab -->
+  <div id="adventurer" class="tab-content active">
+    <div class="switch-group">
+      <input type="checkbox" id="ref-adv"> <label for="ref-adv">Provide a reference image</label>
+    </div>
+    <div class="field-group"><label>Gender (e.g. male, female, nonbinary)</label><input id="gender-adv"></div>
+    <div class="field-group"><label>Ancestry (e.g. elf, orc, dwarf)</label><input id="ancestry-adv"></div>
+    <div class="field-group"><label>Class (e.g. cleric, rogue, fighter)</label><input id="class-adv"></div>
+    <div class="field-group"><label>Hair Style & Color (e.g. braided silver, short auburn)</label><input id="hair-adv"></div>
+    <div class="field-group"><label>Eye Description (e.g. glowing green, clouded white)</label><input id="eyes-adv"></div>
+    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-adv"></div>
+    <div class="field-group"><label>Clothes or Armor</label><input id="clothes-adv"></div>
+    <div class="field-group"><label>Weapons or Gear</label><input id="gear-adv"></div>
+    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-adv"></div>
+    <div class="action-buttons">
+      <button onclick="generateAdventurerPrompt()">Generate Prompt</button>
+      <button>Generate Random Adventurer</button>
+    </div>
+  </div>
+
+  <!-- Villager Tab -->
+  <div id="villager" class="tab-content">
+    <div class="switch-group">
+      <input type="checkbox" id="ref-vil"> <label for="ref-vil">Provide a reference image</label>
+    </div>
+    <div class="field-group"><label>Gender</label><input id="gender-vil"></div>
+    <div class="field-group"><label>Ancestry</label><input id="ancestry-vil"></div>
+    <div class="field-group"><label>Occupation</label><input id="occupation-vil"></div>
+    <div class="field-group"><label>Hair Style & Color</label><input id="hair-vil"></div>
+    <div class="field-group"><label>Eye Description</label><input id="eyes-vil"></div>
+    <div class="field-group"><label>Unique Physical Traits</label><input id="traits-vil"></div>
+    <div class="field-group"><label>Clothing or Gear</label><input id="clothes-vil"></div>
+    <div class="field-group"><label>Tool/Prop</label><input id="gear-vil"></div>
+    <div class="field-group"><label>Mood or Demeanor</label><input id="mood-vil"></div>
+    <div class="action-buttons">
+      <button onclick="generateVillagerPrompt()">Generate Prompt</button>
+      <button>Generate Random Villager</button>
+    </div>
+  </div>
+
+  <!-- Creature Tab -->
+  <div id="creature" class="tab-content">
+    <div class="switch-group">
+      <input type="checkbox" id="ref-cre"> <label for="ref-cre">Provide a reference image</label>
+    </div>
+    <div class="switch-group">
+      <input type="checkbox" id="specific-cre" onchange="toggleCreatureName()"> <label for="specific-cre">Is this a specific creature?</label>
+    </div>
+    <div class="field-group" id="name-field" class="hidden"><label>Creature Name</label><input id="name-cre"></div>
+    <div class="field-group" id="family-field"><label>Creature Family</label><input id="family-cre"></div>
+    <div class="field-group"><label>Coloration or Patterns</label><input id="color-cre"></div>
+    <div class="field-group"><label>Unique Physical Features</label><input id="features-cre"></div>
+    <div class="field-group"><label>Eyes or Facial Details</label><input id="face-cre"></div>
+    <div class="field-group"><label>Temperament or Attitude</label><input id="mood-cre"></div>
+    <div class="field-group"><label>Pose Description</label><input id="pose-cre"></div>
+    <div class="action-buttons">
+      <button onclick="generateCreaturePrompt()">Generate Prompt</button>
+      <button>Generate Random Creature</button>
+    </div>
+  </div>
+
+  <div id="output-box">Your generated prompt will appear here.</div>
+  <div class="action-buttons">
+    <button onclick="copyPrompt()">Copy to Clipboard</button>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function toggleCreatureName() {
+      const isSpecific = document.getElementById("specific-cre").checked;
+      document.getElementById("name-field").style.display = isSpecific ? "block" : "none";
+      document.getElementById("family-field").style.display = isSpecific ? "none" : "block";
+    }
+
+    function generateAdventurerPrompt() {
+      const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
+      const g = document.getElementById("gender-adv").value;
+      const a = document.getElementById("ancestry-adv").value;
+      const c = document.getElementById("class-adv").value;
+      const h = document.getElementById("hair-adv").value;
+      const e = document.getElementById("eyes-adv").value;
+      const t = document.getElementById("traits-adv").value;
+      const cl = document.getElementById("clothes-adv").value;
+      const ge = document.getElementById("gear-adv").value;
+      const m = document.getElementById("mood-adv").value;
+
+      const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+      document.getElementById("output-box").innerText = prompt;
+    }
+
+    function generateVillagerPrompt() {
+      const ref = document.getElementById("ref-vil").checked ? "Based on this reference image. " : "";
+      const g = document.getElementById("gender-vil").value;
+      const a = document.getElementById("ancestry-vil").value;
+      const o = document.getElementById("occupation-vil").value;
+      const h = document.getElementById("hair-vil").value;
+      const e = document.getElementById("eyes-vil").value;
+      const t = document.getElementById("traits-vil").value;
+      const cl = document.getElementById("clothes-vil").value;
+      const ge = document.getElementById("gear-vil").value;
+      const m = document.getElementById("mood-vil").value;
+
+      const prompt = `Enhance this prompt then generate the image from the enhanced prompt and display the enhanced prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+      document.getElementById("output-box").innerText = prompt;
+    }
+
+    function generateCreaturePrompt() {
+      const ref = document.getElementById("ref-cre").checked ? "Based on this reference image. " : "";
+      const specific = document.getElementById("specific-cre").checked;
+      const name = document.getElementById("name-cre").value;
+      const fam = document.getElementById("family-cre").value;
+      const col = document.getElementById("color-cre").value;
+      const feat = document.getElementById("features-cre").value;
+      const face = document.getElementById("face-cre").value;
+      const mood = document.getElementById("mood-cre").value;
+      const pose = document.getElementById("pose-cre").value;
+
+      const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
+      const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
+
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed Pathfinder 2e artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token should be a .png file with a transparent background in an isometric top-down perspective.`;
+
+      document.getElementById("output-box").innerText = prompt;
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById("output-box").innerText;
+      navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
+    }
+  </script>
+
+</body>
+</html>
