@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -11,12 +12,19 @@ body {
     font-family: 'Georgia', serif;
     color: #d4af37;
     margin: 0;
-    padding: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 h1 {
     color: #d4af37;
     text-align: center;
+    font-size: 4em;
 }
 
 label {
@@ -26,16 +34,18 @@ label {
 
 input[type="text"], select, textarea {
     width: 100%;
+    max-width: 600px;
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
     border: none;
     background-color: #cbc18e;
     color: #1e1e2f;
+    font-size: 75%;
+    display: block;
 }
 
-input::placeholder,
-textarea::placeholder {
+input::placeholder, textarea::placeholder {
     color: #672320;
 }
 
@@ -56,21 +66,22 @@ button:hover {
     background-color: #4d1a18;
 }
 
-#output {
+#unifiedOutput {
     margin-top: 20px;
     background-color: #cbc18e;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid #672320;
     white-space: pre-line;
+    max-width: 600px;
 }
 
-input[type="text"], select, textarea {
-    font-size: 75%;
-}
-
-h1 {
-    font-size: 4em;
+/* Toggle switch style */
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
 }
 
 .switch {
@@ -78,27 +89,21 @@ h1 {
   display: inline-block;
   width: 50px;
   height: 24px;
-  margin-right: 10px;
 }
-
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
   background-color: #ccc;
-  transition: 0.4s;
+  transition: .4s;
   border-radius: 24px;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -107,29 +112,31 @@ h1 {
   left: 3px;
   bottom: 3px;
   background-color: white;
-  transition: 0.4s;
+  transition: .4s;
   border-radius: 50%;
 }
-
 input:checked + .slider {
-  background-color: #d4af37;
+  background-color: #8b5e3c;
 }
-
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 </style></head>
 <body>
-  <div class="container">
-    <div class="tab-buttons" style="font-size: 3em;">
-      <button onclick="switchTab('adventurerTab')" id="adventurerBtn" class="active">Adventurer</button>
-      <button onclick="switchTab('villagerTab')" id="villagerBtn">Villager</button>
-      <button onclick="switchTab('creatureTab')" id="creatureBtn">Creature</button>
-    </div>
-
-    <div id="adventurerTab" class="tab" style="display: block;">
+<header style="text-align: center; padding: 30px 0;">
+<h1 style="font-family: 'Cinzel', 'Georgia', serif; font-size: 3.5em; font-weight: bold; color: #d4af37;">
+    VTT Token Prompt Generator for ChatGPT
+  </h1>
+</header>
 <div class="container">
-<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label class="toggle-label" for="referenceToggle">Provide an optional reference picture</label>
+<div class="tab-buttons" style="font-size: 3em;">
+<button class="active" id="adventurerBtn" onclick="switchTab('adventurerTab')">Adventurer</button>
+<button id="villagerBtn" onclick="switchTab('villagerTab')">Villager</button>
+<button id="creatureBtn" onclick="switchTab('creatureTab')">Creature</button>
+</div>
+<div class="tab" id="adventurerTab" style="display: block;">
+<div class="container">
+<label class="switch"><span class="slider"></span></label>
 <p class="subtext">* click this if you will be uploading a reference picture to ChatGPT along with the generated prompt</p>
 <form id="tokenForm">
 <label for="gender">Gender:</label><input id="gender" placeholder="e.g., male, female, nonbinary" type="text"/>
@@ -147,9 +154,9 @@ input:checked + .slider:before {
 <div class="image-preview" id="randomImagesContainer" style="margin-top: 40px; display: flex; flex-wrap: wrap;"></div>
 <script src="script.js"></script>
 </div></div>
-    <div id="villagerTab" class="tab" style="display: none;">
+<div class="tab" id="villagerTab" style="display: none;">
 <div class="toggle">
-<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
+<label class="switch"><span class="slider"></span></label>
 </div>
 <label for="gender">Gender:</label>
 <select id="gender">
@@ -175,14 +182,14 @@ input:checked + .slider:before {
 <input id="demeanor" placeholder="e.g., focused, cheerful, suspicious" type="text"/>
 <button onclick="generatePrompt()">Generate Prompt</button>
 <button onclick="fillRandomVillager()">Generate Random Villager</button>
-<div ></div>
+<div></div>
 <button onclick="copyToClipboard()">Copy Prompt to Clipboard</button></div>
-    <div id="creatureTab" class="tab" style="display: none;">
+<div class="tab" id="creatureTab" style="display: none;">
 <div class="toggle">
-<label class="switch"><input id="referenceToggle" type="checkbox"/><span class="slider"></span></label><label for="referenceToggle">Will you be providing a reference image?</label>
+<label class="switch"><span class="slider"></span></label>
 </div>
 <div class="toggle">
-<label class="switch"><input id="specificToggle" type="checkbox"/><span class="slider"></span></label><label for="specificToggle">Is this a specific PF2e creature?</label>
+<label class="switch"><span class="slider"></span></label>
 </div>
 <div id="specificFields">
 <label for="name">Creature Name:</label>
@@ -208,13 +215,11 @@ input:checked + .slider:before {
 </div>
 <button onclick="generateMonsterPrompt()">Generate Creature Prompt</button>
 <button onclick="generateRandom()">Generate Random Creature</button>
-<div ></div>
+<div></div>
 <button onclick="copyPromptToClipboard()">Copy to Clipboard</button></div>
+<div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
 
-    <div id="unifiedOutput" style="background-color: #cbc18e; padding: 20px; border-radius: 8px; margin-bottom: 20px; color: black; font-size: 1.1em;"></div>
-  </div>
-
-  <script>
+<script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
       document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
@@ -222,7 +227,7 @@ input:checked + .slider:before {
       document.getElementById(tabId.replace('Tab', 'Btn')).classList.add('active');
     }
   </script>
-  <script>function generatePrompt() {
+<script>function generatePrompt() {
     const gender = document.getElementById("gender").value;
     const ancestry = document.getElementById("ancestry").value;
     const charClass = document.getElementById("class").value;
@@ -293,7 +298,7 @@ function generateRandomCharacter() {
 function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }</script>
-  <script>
+<script>
     const ancestries = [
       "elf", "dwarf", "human", "gnome", "halfling", "goblin", "orc", "lizardfolk", "tengu", "catfolk",
       "sylph", "undine", "ifrit", "oread", "fetchling", "kitsune", "ratfolk", "hobgoblin",
@@ -361,7 +366,7 @@ function randomChoice(arr) {
     });
   }
 </script>
-  <script>
+<script>
     const families = ["dragon", "fey", "ooze", "undead", "plant", "construct", "aberration", "fiend", "celestial", "elemental", "beast", "vermin", "golem", "hag", "nymph", "giant", "sprite", "lycanthrope", "goblin", "troglodyte", "wraith", "lizardfolk", "genie", "fungus", "minotaur", "arachnid", "harpy", "construct-spirit", "phantom", "shadowbeast"];
     const colors = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];
     const features = ["glowing crimson scales", "striped fur", "mottled hide", "glimmering chitin", "ashen feathers", "veined skin", "obsidian armor", "molten gold eyes", "phantasmal glow", "eerie translucence", "patchy mold", "ethereal shimmer", "crystalline plates", "leathery patches", "liquid mercury texture", "thorny outgrowths", "veins of fire", "slime-coated skin", "stone-plated flesh", "misty aura", "dark streaks", "sunburst markings", "arcane glyphs", "sandy texture", "mirror sheen", "iridescent sheen", "chained hide", "cursed runes", "fractal fur", "glowing veins", "burning charcoal skin", "veined purple crystal", "mud-caked hide", "ashen bone plates", "sapphire fur", "frosted scales", "gleaming black chitin", "whirlpool pattern", "bloody streaks", "stormy cloud markings"];  // Using same values for simplicity
