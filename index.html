@@ -182,6 +182,30 @@ input::placeholder {
 }
 </style>
 
+
+<style>
+#copy-popup {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1001;
+  animation: fadeOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+</style>
+
 </head>
 <body>
 
@@ -554,6 +578,9 @@ function toggleHelp() {
 }
 </script>
 
+
+
+<div id="copy-popup">Copied to clipboard!</div>
 
 </body>
 </html>
