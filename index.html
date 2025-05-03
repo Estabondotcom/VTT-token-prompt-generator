@@ -354,7 +354,7 @@ function generateRandomAdventurer() {
   document.getElementById("clothes-adv").value = "armor or clothes appropriate to ancestry and class";
   document.getElementById("gear-adv").value = "weapons and gear appropriate to ancestry and class";
   document.getElementById("mood-adv").value = "a mood or demeanor fitting their class, such as stoic, zealous, cunning";
-  document.getElementById("pose-adv").value = "a pose appropriate to their ancestry, class, and demeanor";
+  document.getElementById("pose-adv").value = "in a way appropriate to their ancestry, class, and demeanor";
 }
 
 // VILLAGER
@@ -483,7 +483,7 @@ function generateAdventurerPrompt() {
 
   const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
 
-${ref}Generate a full-body isometric top-down token with a transparent background for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. Avoid any papery, sketch-like texture. Do not generate any shadows, effects or textures in the background. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token with a transparent background for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. They are posed ${p} . Avoid any papery, sketch-like texture. Do not generate any shadows, effects or textures in the background. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
