@@ -444,7 +444,6 @@ function generateRandomCreature() {
 }
 
 
-<script>
 function copyPrompt() {
   const text = document.getElementById("output-box").innerText;
   navigator.clipboard.writeText(text).then(() => {
@@ -456,7 +455,6 @@ function copyPrompt() {
     }, 1800);
   });
 }
-</script>
 
 function generateAdventurerPrompt() {
   const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
