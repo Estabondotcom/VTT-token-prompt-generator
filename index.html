@@ -450,8 +450,15 @@ function copyPrompt() {
   const text = document.getElementById("output-box").innerText;
   navigator.clipboard.writeText(text).then(() => {
     const popup = document.getElementById("copy-popup");
+    const button = document.getElementById("copy-button");
+    const rect = button.getBoundingClientRect();
+
+    popup.style.position = "fixed";
+    popup.style.left = `${rect.left + rect.width + 20}px`;
+    popup.style.top = `${rect.top}px`;
     popup.style.display = "block";
     popup.style.opacity = "1";
+
     setTimeout(() => {
       popup.style.display = "none";
     }, 1800);
