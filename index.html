@@ -158,11 +158,11 @@ input::placeholder {
     <div class="switch-group">
       <input type="checkbox" id="ref-adv"> <label for="ref-adv">You will be providing a reference image to ChatGPT</label>
     </div>
-    <div class="field-group"><label>Gender (e.g. male, female, nonbinary)</label><input id="gender-adv" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
-    <div class="field-group"><label>Ancestry (e.g. elf, orc, dwarf)</label><input id="ancestry-adv" placeholder="e.g. elf, orc, dwarf" style="color: grey;"></div>
-    <div class="field-group"><label>Class (e.g. cleric, rogue, fighter)</label><input id="class-adv" placeholder="e.g. cleric, rogue, fighter" style="color: grey;"></div>
-    <div class="field-group"><label>Hair Style & Color (e.g. braided silver, short auburn)</label><input id="hair-adv" placeholder="e.g. braided silver, short auburn" style="color: grey;"></div>
-    <div class="field-group"><label>Eye Description (e.g. glowing green, clouded white)</label><input id="eyes-adv" placeholder="e.g. glowing green, clouded white" style="color: grey;"></div>
+    <div class="field-group"><label>Gender </label><input id="gender-adv" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
+    <div class="field-group"><label>Ancestry </label><input id="ancestry-adv" placeholder="e.g. elf, orc, dwarf" style="color: grey;"></div>
+    <div class="field-group"><label>Class </label><input id="class-adv" placeholder="e.g. cleric, rogue, fighter" style="color: grey;"></div>
+    <div class="field-group"><label>Hair Style & Color </label><input id="hair-adv" placeholder="e.g. braided silver, short auburn" style="color: grey;"></div>
+    <div class="field-group"><label>Eye Description </label><input id="eyes-adv" placeholder="e.g. glowing green, clouded white" style="color: grey;"></div>
     <div class="field-group"><label>Unique Physical Traits</label><input id="traits-adv" placeholder="e.g. glowing tattoos, missing arm" style="color: grey;"></div>
     <div class="field-group"><label>Clothes or Armor</label><input id="clothes-adv" placeholder="e.g. iron chainmail, bark tunic" style="color: grey;"></div>
     <div class="field-group"><label>Weapons or Gear</label><input id="gear-adv" placeholder="e.g. enchanted axe, holy symbol" style="color: grey;"></div>
@@ -254,7 +254,8 @@ function generateRandomAdventurer() {
     "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
     "Shoony", "Tengu", "Android", "Fetchling", "Ratfolk", "Skeleton", "Kitsune", "Tiefling", "Aasimar", "Nagaji", "Vanara",
     "Strix", "Grippli", "Tripkee", "Kholo", "Gillman", "Ghoran", "Suli", "Ifrit", "Oread", "Sylph", "Undine", "Changeling",
-    "Duskwalker", "Nephilim", "Beastkin", "Poppet", "Sprite"
+    "Duskwalker", "Nephilim", "Beastkin", "Poppet", "Sprite", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
+    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
   ];
   const classList = [
     "Alchemist", "Barbarian", "Bard", "Champion", "Cleric", "Druid", "Fighter", "Gunslinger", "Inventor", "Investigator",
@@ -294,7 +295,8 @@ function generateRandomVillager() {
     "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
     "Shoony", "Tengu", "Ratfolk", "Kitsune", "Tripkee", "Vanara", "Kholo", "Sprite", "Beastkin", "Ifrit", "Oread", "Sylph",
     "Undine", "Changeling", "Duskwalker", "Poppet", "Suli", "Nephilim", "Ghoran", "Gillman", "Fetchling", "Strix", "Grippli",
-    "Skeleton", "Android", "Aasimar", "Tiefling"
+    "Skeleton", "Android", "Aasimar", "Tiefling", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
+    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
   ];
   const occupationList = [
     "Baker", "Blacksmith", "Merchant", "Town Crier", "Miscreant", "Fletcher", "Beggar", "Noble", "Healer", "Guard",
@@ -397,7 +399,7 @@ function generateAdventurerPrompt() {
 
   const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${c} with ${h}, ${e}, and ${t}. They are wearing ${cl} and wielding ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective. The background must be fully transparent with no shadows, gradients, or visual effects.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
@@ -416,7 +418,7 @@ function generateVillagerPrompt() {
 
   const prompt = `Enhance this prompt then generate the image from the enhanced prompt and display the enhanced prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. The token is of a ${g} ${a} ${o} with ${h}, ${e}, and ${t}. They are wearing ${cl} and holding or carrying ${ge}. Their posture and facial expression should reflect ${m}. The token must be a .png file with a transparent background in an isometric top-down perspective. The background must be fully transparent with no shadows, gradients, or visual effects.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
@@ -435,7 +437,7 @@ function generateCreaturePrompt() {
   const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
   const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
 
-${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. The token must be a .png file with a transparent background in an isometric top-down perspective. The background must be fully transparent with no shadows, gradients, or visual effects.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
