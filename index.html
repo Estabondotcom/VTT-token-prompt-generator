@@ -444,10 +444,19 @@ function generateRandomCreature() {
 }
 
 
+<script>
 function copyPrompt() {
   const text = document.getElementById("output-box").innerText;
-  navigator.clipboard.writeText(text).then(() => alert("Prompt copied to clipboard!"));
+  navigator.clipboard.writeText(text).then(() => {
+    const popup = document.getElementById("copy-popup");
+    popup.style.display = "block";
+    popup.style.opacity = "1";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 1800);
+  });
 }
+</script>
 
 function generateAdventurerPrompt() {
   const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
