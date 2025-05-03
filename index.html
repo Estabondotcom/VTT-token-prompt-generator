@@ -341,7 +341,9 @@ function generateRandomAdventurer() {
   if (chosenClass === "Cleric" || chosenClass === "Champion") {
     const deity = getRandomAdventurerValue(deityList);
     chosenClass += " of " + deity;
-  }
+  
+  document.getElementById("adv-pose").value = "a pose appropriate to their ancestry, class, and demeanor";
+}
 
   document.getElementById("gender-adv").value = gender;
   document.getElementById("ancestry-adv").value = ancestry;
