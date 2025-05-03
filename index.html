@@ -233,6 +233,7 @@ input::placeholder {
     <div class="field-group"><label>Clothes or Armor</label><input id="clothes-adv" placeholder="e.g. iron chainmail, bark tunic" style="color: grey;"></div>
     <div class="field-group"><label>Weapons or Gear</label><input id="gear-adv" placeholder="e.g. enchanted axe, holy symbol" style="color: grey;"></div>
     <div class="field-group"><label>Mood or Demeanor</label><input id="mood-adv" placeholder="e.g. stoic, zealous, cunning" style="color: grey;"></div>
+    <div class="field-group"><label>Pose</label><input id="pose-adv" placeholder=""e.g. Standing proud, mid-leap, aiming a bow" style="color: grey;"></div>
     <div class="action-buttons">
       <button onclick="generateAdventurerPrompt()">Generate Prompt</button>
       <button onclick="generateRandomAdventurer()">Generate Random Adventurer</button>
@@ -342,7 +343,6 @@ function generateRandomAdventurer() {
     const deity = getRandomAdventurerValue(deityList);
     chosenClass += " of " + deity;
   
-  document.getElementById("adv-pose").value = "a pose appropriate to their ancestry, class, and demeanor";
 }
 
   document.getElementById("gender-adv").value = gender;
@@ -354,6 +354,7 @@ function generateRandomAdventurer() {
   document.getElementById("clothes-adv").value = "armor or clothes appropriate to ancestry and class";
   document.getElementById("gear-adv").value = "weapons and gear appropriate to ancestry and class";
   document.getElementById("mood-adv").value = "a mood or demeanor fitting their class, such as stoic, zealous, cunning";
+  document.getElementById("pose-adv").value = "a pose appropriate to their ancestry, class, and demeanor";
 }
 
 // VILLAGER
@@ -478,6 +479,7 @@ function generateAdventurerPrompt() {
   const cl = document.getElementById("clothes-adv").value;
   const ge = document.getElementById("gear-adv").value;
   const m = document.getElementById("mood-adv").value;
+  const p = document.getElementById("pose-adv").value;
 
   const prompt = `Enhance this prompt and then generate the image based off the new prompt. Then display the new enhanced prompt.
 
