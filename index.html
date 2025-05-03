@@ -539,12 +539,21 @@ function clearCreatureFields() {
     <li><strong>Copy and Paste</strong> – Use the <em>Copy to Clipboard</em> button to copy the generated prompt. Paste it into ChatGPT to generate your token image.</li>
   </ol>
 </div>
+
 <script>
 function toggleHelp() {
   const content = document.getElementById("help-content");
-  content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
+  const button = document.getElementById("help-button");
+  if (content.style.display === "none" || content.style.display === "") {
+    content.style.display = "block";
+    button.textContent = "✕";
+  } else {
+    content.style.display = "none";
+    button.textContent = "?";
+  }
 }
 </script>
+
 
 </body>
 </html>
