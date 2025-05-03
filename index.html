@@ -142,6 +142,46 @@ input::placeholder {
 }
 
 </style>
+
+<style>
+#help-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: gold;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+#help-content {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  width: 90%;
+  max-width: 500px;
+  background-color: #f8f5e6;
+  color: #222;
+  padding: 20px;
+  border: 2px solid gold;
+  border-radius: 12px;
+  z-index: 999;
+  overflow-y: auto;
+  max-height: 70vh;
+  font-family: sans-serif;
+  font-size: 0.95em;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+</style>
+
 </head>
 <body>
 
@@ -476,6 +516,35 @@ function clearCreatureFields() {
 
 </script>
 
+
+
+<button id="help-button" onclick="toggleHelp()">?</button>
+<div id="help-content">
+  <h2>🧰 What This Is</h2>
+  <p>This is a web app designed to help you quickly generate high-quality text prompts to use with ChatGPT for creating <strong>isometric top-down tokens</strong> for your <strong>fantasy virtual tabletop (VTT)</strong> games, like those using <strong>Pathfinder 2e</strong> or <strong>Dungeons & Dragons</strong>.</p>
+  <h2>🎯 What It Does</h2>
+  <p>Each tab (Adventurer, Villager, Creature) contains customizable fields for character or creature details. The app then assembles these inputs into a prompt that tells ChatGPT <strong>exactly</strong> what kind of token you want — styled as fantasy artwork with true transparency for easy use in VTTs like FoundryVTT or Roll20.</p>
+  <h2>🛠️ How to Use It</h2>
+  <ol>
+    <li><strong>Choose a Tab</strong> – Select whether you're generating a prompt for an <em>Adventurer</em>, <em>Villager</em>, or <em>Creature</em>.</li>
+    <li><strong>Fill In the Fields</strong> – Provide details like gender, ancestry, class, traits, and gear. Example placeholders are provided to guide you.</li>
+    <li><strong>Use Toggles (Optional)</strong><br>
+      - <em>Reference Image:</em> Let ChatGPT know you'll be supplying an image.<br>
+      - <em>Specific Creature</em> (Creature tab only): Switch from creature family to creature name.
+    </li>
+    <li><strong>Generate Your Prompt</strong><br>
+      - Click <em>“Generate Prompt”</em> to create a custom text prompt based on your inputs.<br>
+      - Or click <em>“Generate Random”</em> to autofill the fields with fantasy-appropriate values.
+    </li>
+    <li><strong>Copy and Paste</strong> – Use the <em>Copy to Clipboard</em> button to copy the generated prompt. Paste it into ChatGPT to generate your token image.</li>
+  </ol>
+</div>
+<script>
+function toggleHelp() {
+  const content = document.getElementById("help-content");
+  content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
+}
+</script>
 
 </body>
 </html>
