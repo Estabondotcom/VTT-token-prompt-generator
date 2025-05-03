@@ -517,7 +517,7 @@ function generateCreaturePrompt() {
   const subject = specific ? `The token is of the creature "${name}" with` : `The token is of a creature from the ${fam} family, with`;
   const prompt = `Enhance this prompt and then generate an image based off the new prompt, then display the new prompt.
 
-${ref}Generate a full-body isometric top-down token with a transparent background for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. Avoid any papery, sketch-like texture. Do not generate any shadows, effects or textures in the background. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+${ref}Generate a full-body isometric top-down token with a transparent background for use with FoundryVTT, styled after Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting inspired by Pathfinder and D&D artwork. ${subject} ${col}, ${feat}, and ${face}. Its overall demeanor is ${mood}, and it is posed ${pose}. Check for illogical limbs. Avoid any papery, sketch-like texture. Do not generate any shadows, effects or textures in the background. The token must be a .png file with a transparent background in an isometric top-down perspective.`;
 
   document.getElementById("output-box").innerText = prompt;
 }
