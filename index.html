@@ -186,9 +186,6 @@ input::placeholder {
 <style>
 #copy-popup {
   display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 20px;
   background-color: #4CAF50;
   color: white;
   padding: 10px 16px;
@@ -196,7 +193,8 @@ input::placeholder {
   font-size: 0.95em;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index: 1001;
-  animation: fadeOut 2s ease-in-out forwards;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
 }
 
 @keyframes fadeOut {
@@ -283,7 +281,7 @@ input::placeholder {
 
   <div id="output-box">Your generated prompt will appear here.</div>
   <div class="action-buttons">
-    <button onclick="copyPrompt()">Copy to Clipboard</button>
+    <button id="copy-button" onclick="copyPrompt()">Copy to Clipboard</button>
   </div>
 
   
