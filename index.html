@@ -602,5 +602,41 @@ function toggleHelp() {
 
 <div id="copy-popup">Copied to clipboard!</div>
 
+
+<style>
+#random-images-container img {
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+</style>
+<script>
+function loadRandomImages() {
+  fetch("examples/images.json")
+    .then(response => response.json())
+    .then(images => {
+      const container = document.getElementById("random-images-container");
+      container.innerHTML = "";
+      const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 10);
+      shuffled.forEach(img => {
+        const image = document.createElement("img");
+        image.src = `examples/${img}`;
+        image.alt = "Example Token";
+        image.onload = () => {
+          image.style.opacity = "1";
+          image.style.transform = "scale(1)";
+        };
+        container.appendChild(image);
+      });
+    });
+}
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("refresh-images").addEventListener("click", loadRandomImages);
+  loadRandomImages();
+});
+</script>
+
 </body>
 </html>
