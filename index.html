@@ -241,6 +241,13 @@ input::placeholder {
     </div>
   </div>
 
+<!-- Example Tokens -->
+<div id="example-token-wrapper" style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+  <button id="refresh-tokens" style="font-size: 20px; cursor: pointer;">Show Different Examples</button>
+</div>
+
+
   <!-- Villager Tab -->
   <div id="villager" class="tab-content">
     <div class="switch-group">
@@ -261,6 +268,13 @@ input::placeholder {
 <button onclick="clearVillagerFields()">Clear Fields</button>
     </div>
   </div>
+
+<!-- Example Tokens -->
+<div id="example-token-wrapper" style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+  <button id="refresh-tokens" style="font-size: 20px; cursor: pointer;">Show Different Examples</button>
+</div>
+
 
   <!-- Creature Tab -->
   <div id="creature" class="tab-content">
@@ -284,15 +298,17 @@ input::placeholder {
     </div>
   </div>
 
+<!-- Example Tokens -->
+<div id="example-token-wrapper" style="margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+<div style="display: flex; justify-content: center; margin-top: 10px;">
+  <button id="refresh-tokens" style="font-size: 20px; cursor: pointer;">Show Different Examples</button>
+</div>
+
+
   <div id="output-box">Your generated prompt will appear here.</div>
   <div class="action-buttons">
     <button id="copy-button" onclick="copyPrompt()">Copy to Clipboard</button>
   </div>
-<div style="display: flex; justify-content: center;">
-  <button id="refresh-images" title="Refresh examples" style="font-size: 24px; margin: 20px auto; cursor: pointer;">🔄</button>
-</div>
-<div id="random-images-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
-
 
   
 <script>
@@ -617,27 +633,25 @@ function toggleHelp() {
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 </style>
-
 <script>
 function loadRandomImages() {
-  const images = [
-    "token1.png", "token2.png", "token3.png",
-    "token4.png", "token5.png", "token6.png",
-    "token7.png", "token8.png", "token9.png", "token10.png"
-  ];
-  const container = document.getElementById("random-images-container");
-  container.innerHTML = "";
-  const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 10);
-  shuffled.forEach(img => {
-    const image = document.createElement("img");
-    image.src = `examples/${img}`;
-    image.alt = "Example Token";
-    image.onload = () => {
-      image.style.opacity = "1";
-      image.style.transform = "scale(1)";
-    };
-    container.appendChild(image);
-  });
+  fetch("examples/images.json")
+    .then(response => response.json())
+    .then(images => {
+      const container = document.getElementById("random-images-container");
+      container.innerHTML = "";
+      const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 10);
+      shuffled.forEach(img => {
+        const image = document.createElement("img");
+        image.src = `examples/${img}`;
+        image.alt = "Example Token";
+        image.onload = () => {
+          image.style.opacity = "1";
+          image.style.transform = "scale(1)";
+        };
+        container.appendChild(image);
+      });
+    });
 }
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("refresh-images").addEventListener("click", loadRandomImages);
@@ -645,6 +659,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+<script>
+const tokenImages = [
+  "example1.png", "example2.png", "example3.png", "example4.png",
+  "example5.png", "example6.png", "example7.png", "example8.png",
+  "example9.png", "example10.png", "example11.png", "example12.png"
+];
+
+function showRandomTokens() {
+  const container = document.getElementById("example-token-wrapper");
+  container.innerHTML = "";
+  const shuffled = tokenImages.sort(() => 0.5 - Math.random()).slice(0, 8);
+  shuffled.forEach(img => {
+    const image = document.createElement("img");
+    image.src = `examples/${img}`;
+    image.alt = "Example Token";
+    image.style.width = "100px";
+    image.style.height = "100px";
+    image.style.borderRadius = "8px";
+    container.appendChild(image);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("refresh-tokens").addEventListener("click", showRandomTokens);
+  showRandomTokens();
+});
+</script>
 
 </body>
 </html>
