@@ -241,8 +241,27 @@ input::placeholder {
     </div>
   </div>
 
-
-
+  <!-- Villager Tab -->
+<div id="villager" class="tab-content">
+  <div class="switch-group">
+    <input type="checkbox" id="ref-vil">
+    <label for="ref-vil">You will be providing a reference image to ChatGPT</label>
+  </div>
+  <div class="field-group"><label>Gender</label><input id="gender-vil" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
+  <div class="field-group"><label>Ancestry</label><input id="ancestry-vil" placeholder="e.g. halfling, human, ratfolk" style="color: grey;"></div>
+  <div class="field-group"><label>Occupation</label><input id="occupation-vil" placeholder="e.g. baker, blacksmith, merchant" style="color: grey;"></div>
+  <div class="field-group"><label>Hair Style & Color</label><input id="hair-vil" placeholder="e.g. messy blonde, tightly braided brown" style="color: grey;"></div>
+  <div class="field-group"><label>Eye Description</label><input id="eyes-vil" placeholder="e.g. kind hazel, sharp grey" style="color: grey;"></div>
+  <div class="field-group"><label>Unique Physical Traits</label><input id="traits-vil" placeholder="e.g. burn scars, silver prosthetic leg" style="color: grey;"></div>
+  <div class="field-group"><label>Clothes or Gear</label><input id="clothes-vil" placeholder="e.g. patched apron, traveling cloak" style="color: grey;"></div>
+  <div class="field-group"><label>Tools or Items</label><input id="items-vil" placeholder="e.g. wooden spoon, ledger book, hammer" style="color: grey;"></div>
+  <div class="field-group"><label>Mood or Demeanor</label><input id="mood-vil" placeholder="e.g. cheerful, suspicious, thoughtful" style="color: grey;"></div>
+  <div class="action-buttons">
+    <button onclick="generateVillagerPrompt()">Generate Prompt</button>
+    <button onclick="generateRandomVillager()">Generate Random Villager</button>
+    <button onclick="clearVillagerFields()">Clear Fields</button>
+  </div>
+</div>
 
   <!-- Creature Tab -->
   <div id="creature" class="tab-content">
