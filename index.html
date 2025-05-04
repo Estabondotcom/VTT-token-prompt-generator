@@ -617,31 +617,34 @@ function toggleHelp() {
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 </style>
+
 <script>
 function loadRandomImages() {
-  fetch("examples/images.json")
-    .then(response => response.json())
-    .then(images => {
-      const container = document.getElementById("random-images-container");
-      container.innerHTML = "";
-      const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 10);
-      shuffled.forEach(img => {
-        const image = document.createElement("img");
-        image.src = `examples/${img}`;
-        image.alt = "Example Token";
-        image.onload = () => {
-          image.style.opacity = "1";
-          image.style.transform = "scale(1)";
-        };
-        container.appendChild(image);
-      });
-    });
+  const images = [
+    "token1.png", "token2.png", "token3.png",
+    "token4.png", "token5.png", "token6.png",
+    "token7.png", "token8.png", "token9.png", "token10.png"
+  ];
+  const container = document.getElementById("random-images-container");
+  container.innerHTML = "";
+  const shuffled = images.sort(() => 0.5 - Math.random()).slice(0, 10);
+  shuffled.forEach(img => {
+    const image = document.createElement("img");
+    image.src = `examples/${img}`;
+    image.alt = "Example Token";
+    image.onload = () => {
+      image.style.opacity = "1";
+      image.style.transform = "scale(1)";
+    };
+    container.appendChild(image);
+  });
 }
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("refresh-images").addEventListener("click", loadRandomImages);
   loadRandomImages();
 });
 </script>
+
 
 </body>
 </html>
