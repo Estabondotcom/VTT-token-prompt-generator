@@ -444,7 +444,7 @@ function generateRandomCreature() {
   const specific = document.getElementById("specific-cre").checked;
 
   if (specific) {
-    document.getElementById("name-cre").value = "Zergrak the Devourer";
+    document.getElementById("name-cre").value = getRandomCreatureName();
   } else {
     document.getElementById("family-cre").value = getRandomCreatureValue(familyList);
   }
@@ -636,6 +636,19 @@ const tokenImages = [
   "81.png", "82.png", "83.png", "84.png", "85.png", "86.png", "87.png", "88.png", "89.png"
 ];
   
+
+const pf2eCreatures = [
+  "Hydra", "Chimera", "Basilisk", "Manticore", "Wyvern", "Owlbear", "Displacer Beast", "Grick Alpha", "Frost Worm", "Barghest",
+  "Skeletal Champion", "Ghoul", "Wight", "Vampire Spawn", "Lich", "Dread Wraith", "Poltergeist", "Zombie Hulk", "Graveknight", "Moroi Vampire",
+  "Succubus", "Balor", "Glabrezu", "Hound Archon", "Trumpet Archon", "Stone Giant", "Frost Giant", "Bugbear Thug", "Kobold Dragon Mage", "Hobgoblin Archer"
+];
+
+function getRandomCreatureName() {
+  const index = Math.floor(Math.random() * pf2eCreatures.length);
+  return pf2eCreatures[index];
+}
+
+
 function showRandomTokens() {
   const container = document.getElementById("example-token-wrapper");
   container.innerHTML = "";
@@ -656,26 +669,6 @@ document.addEventListener("DOMContentLoaded", function () {
   showRandomTokens();
 });
 
-</script>
-
-<!-- Tips Content -->
-<div id="tips-container" class="floating-container" style="display: none;">
-  <h2>Tips</h2>
-  <ul>
-    <li><strong>Using Reference Images:</strong> ...</li>
-    <li><strong>Refining Random Prompts:</strong> ...</li>
-    <li><strong>Deity-Specific Classes:</strong> ...</li>
-    <li><strong>Background Removal Issues:</strong> ...</li>
-    <li><strong>Stray Artifacts:</strong> ...</li>
-  </ul>
-</div>
-
-<script>
-
-function toggleTips() {
-  const tips = document.getElementById("tips-container");
-  tips.style.display = (tips.style.display === "none" || tips.style.display === "") ? "block" : "none";
-}
 </script>
 
 </body>
