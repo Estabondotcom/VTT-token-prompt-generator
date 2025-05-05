@@ -203,7 +203,27 @@ input::placeholder {
   overflow-y: auto;
   max-height: 70vh;
   font-family: sans-serif;
-  font-size: 0.95em;
+  font-size: 1.12em;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+#tips-content {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  width: 90%;
+  max-width: 500px;
+  background-color: #f8f5e6;
+  color: #222;
+  padding: 20px;
+  border: 2px solid gold;
+  border-radius: 12px;
+  z-index: 999;
+  overflow-y: auto;
+  max-height: 70vh;
+  font-family: sans-serif;
+  font-size: 1.25em;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 </style>
@@ -733,13 +753,17 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-<div id="tips-content" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background-color: #1b1b1b; color: #f0f0f0; padding: 20px; border-radius: 12px; z-index: 1001; box-shadow: 0 0 10px rgba(0,0,0,0.4);" class="hidden">
+<div id="tips-content" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background-color: #f8f5e6; color: #222; padding: 20px; border-radius: 12px; z-index: 1001; box-shadow: 0 0 10px rgba(0,0,0,0.4);" class="hidden">
   <h3>Tips</h3>
-  <ul>
-    <li>If you're uploading a reference image to ChatGPT, you can leave all fields blank. The prompt will be automatically generated based entirely on the image.</li>
-      <li>Random prompts are fun, but for best results, fine-tune the fields to match your vision—especially under the <strong>Creature</strong> tab.</li>
+  <ul style="line-height: 1.1;">
+   <div> <li>If you're uploading a reference image to ChatGPT, you can leave all fields blank. The prompt will be automatically generated based entirely on the image.</li> </div>
+
+    <div> <li>Random prompts are fun, but for best results, fine-tune the fields to match your vision—especially under the <strong>Creature</strong> tab.</li> </div>
+
       <li>When creating a cleric, champion, paladin, or any follower of a specific deity, be sure to add <em>“of [deity’s name]”</em> at the end of the class field.</li>
+
       <li>ChatGPT initially generates tokens with a background and removes it afterward. Occasionally, this removal fails, resulting in a “fake” transparent background. When this happens, it’s usually best to regenerate the image rather than request a background removal fix.</li>
+
       <li>Sometimes remnants of a background or bits of text may remain in the token. You can clean these up manually using any photo editing software.</li>
   </ul>
 </div>
@@ -754,7 +778,7 @@ function toggleTips() {
     button.textContent = "✕";
   } else {
     content.style.display = "none";
-    button.textContent = "💡";
+    button.textContent = "!";
   }
 }
 </script>
