@@ -286,10 +286,11 @@ input::placeholder {
 
   <!-- Adventurer Tab -->
   <div id="adventurer" class="tab-content active">
-    <div class="switch-group"><input type="checkbox" id="img-only-adv"> <label for="img-only-adv">Based entirely on reference image</label></div>
+   
 <div class="switch-group">
       <input type="checkbox" id="ref-adv"> <label for="ref-adv">You will be providing a reference image to ChatGPT</label>
     </div>
+     <div class="switch-group"><input type="checkbox" id="img-only-adv"> <label for="img-only-adv">Based entirely on reference image</label></div>
     <div class="field-group"><label>Gender </label><input id="gender-adv" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
     <div class="field-group"><label>Ancestry </label><input id="ancestry-adv" placeholder="e.g. elf, orc, dwarf" style="color: grey;"></div>
     <div class="field-group"><label>Class </label><input id="class-adv" placeholder="e.g. cleric, rogue, fighter" style="color: grey;"></div>
@@ -309,11 +310,11 @@ input::placeholder {
 
   <!-- Villager Tab -->
 <div id="villager" class="tab-content">
-  <div class="switch-group"><input type="checkbox" id="img-only-vil"> <label for="img-only-vil">Based entirely on reference image</label></div>
 <div class="switch-group">
     <input type="checkbox" id="ref-vil">
     <label for="ref-vil">You will be providing a reference image to ChatGPT</label>
   </div>
+   <div class="switch-group"><input type="checkbox" id="img-only-adv"> <label for="img-only-adv">Based entirely on reference image</label></div>
   <div class="field-group"><label>Gender</label><input id="gender-vil" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
   <div class="field-group"><label>Ancestry</label><input id="ancestry-vil" placeholder="e.g. halfling, human, ratfolk" style="color: grey;"></div>
   <div class="field-group"><label>Occupation</label><input id="occupation-vil" placeholder="e.g. baker, blacksmith, merchant" style="color: grey;"></div>
@@ -332,10 +333,10 @@ input::placeholder {
 
   <!-- Creature Tab -->
   <div id="creature" class="tab-content">
-    <div class="switch-group"><input type="checkbox" id="img-only-cre"> <label for="img-only-cre">Based entirely on reference image</label></div>
 <div class="switch-group">
       <input type="checkbox" id="ref-cre"> <label for="ref-cre">You will be providing a reference image to ChatGPT</label>
     </div>
+     <div class="switch-group"><input type="checkbox" id="img-only-adv"> <label for="img-only-adv">Based entirely on reference image</label></div>
     <div class="switch-group">
       <input type="checkbox" id="specific-cre" onchange="toggleCreatureName()"> <label for="specific-cre">Is this a specific creature?</label>
     </div>
