@@ -4,7 +4,42 @@
   <meta charset="UTF-8">
   <title>VTT Token Prompt Generator for ChatGPT</title>
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-  <style>
+  
+<style>
+#help-button, #tips-button {
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+
     body {
       background-color: #3b2f2f;
       color: #f5e175;
@@ -143,7 +178,42 @@ input::placeholder {
 
 </style>
 
+
 <style>
+#help-button, #tips-button {
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+
 #help-button {
   position: fixed;
   top: 20px;
@@ -183,7 +253,42 @@ input::placeholder {
 </style>
 
 
+
 <style>
+#help-button, #tips-button {
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+
 #copy-popup {
   display: none;
   position: fixed;
@@ -210,6 +315,12 @@ input::placeholder {
 
 </head>
 <body>
+
+<div id="help-buttons" style="position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1001;">
+  <button id="tips-button" onclick="toggleTips()">!</button>
+  <button id="help-button" onclick="toggleHelp()">?</button>
+</div>
+
 
   <h1>VTT Token Prompt Generator for ChatGPT</h1>
 
@@ -570,7 +681,10 @@ function clearCreatureFields() {
 
 
 
-<button id="help-button" onclick="toggleHelp()">?</button>
+<div style="display: flex; gap: 10px;">
+  <button id="tips-button" onclick="toggleTips()">!</button>
+  <button id="help-button" onclick="toggleHelp()">?</button>
+</div>
 <div id="help-content">
   <h2>🧰 What This Is</h2>
   <p>This is a web app designed to help you quickly generate high-quality text prompts to use with ChatGPT for creating <strong>isometric top-down tokens</strong> for your <strong>fantasy virtual tabletop (VTT)</strong> games, like those using <strong>Pathfinder 2e</strong> or <strong>Dungeons & Dragons</strong>.</p>
@@ -611,7 +725,42 @@ function toggleHelp() {
 <div id="copy-popup">Copied to clipboard!</div>
 
 
+
 <style>
+#help-button, #tips-button {
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+
 #random-images-container img {
   width: 100px;
   height: 100px;
@@ -670,6 +819,36 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+
+
+
+
+
+<script>
+function toggleTips() {
+  const content = document.getElementById("tips-content");
+  const button = document.getElementById("tips-button");
+  if (content.style.display === "none" || content.style.display === "") {
+    content.style.display = "block";
+    button.textContent = "✕";
+  } else {
+    content.style.display = "none";
+    button.textContent = "💡";
+  }
+}
+</script>
+
+
+<div id="tips-content" class="overlay hidden">
+  <h2>Tips</h2>
+  <ul>
+    <li>If you're uploading a reference image to ChatGPT, you can leave all fields blank. The prompt will be automatically generated based entirely on the image.</li>
+    <li>Random prompts are fun, but for best results, fine-tune the fields to match your vision—especially under the <strong>Creature</strong> tab.</li>
+    <li>When creating a cleric, champion, paladin, or any follower of a specific deity, be sure to add <em>“of [deity’s name]”</em> at the end of the class field.</li>
+    <li>ChatGPT initially generates tokens with a background and removes it afterward. Occasionally, this removal fails, resulting in a “fake” transparent background. When this happens, it’s usually best to regenerate the image rather than request a background removal fix.</li>
+    <li>Sometimes remnants of a background or bits of text may remain in the token. You can clean these up manually using any photo editing software.</li>
+  </ul>
+</div>
 
 </body>
 </html>
