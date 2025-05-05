@@ -286,7 +286,8 @@ input::placeholder {
 
   <!-- Adventurer Tab -->
   <div id="adventurer" class="tab-content active">
-    <div class="switch-group">
+    <div class="switch-group"><input type="checkbox" id="img-only-adv"> <label for="img-only-adv">Based entirely on reference image</label></div>
+<div class="switch-group">
       <input type="checkbox" id="ref-adv"> <label for="ref-adv">You will be providing a reference image to ChatGPT</label>
     </div>
     <div class="field-group"><label>Gender </label><input id="gender-adv" placeholder="e.g. male, female, nonbinary" style="color: grey;"></div>
@@ -308,7 +309,8 @@ input::placeholder {
 
   <!-- Villager Tab -->
 <div id="villager" class="tab-content">
-  <div class="switch-group">
+  <div class="switch-group"><input type="checkbox" id="img-only-vil"> <label for="img-only-vil">Based entirely on reference image</label></div>
+<div class="switch-group">
     <input type="checkbox" id="ref-vil">
     <label for="ref-vil">You will be providing a reference image to ChatGPT</label>
   </div>
@@ -330,7 +332,8 @@ input::placeholder {
 
   <!-- Creature Tab -->
   <div id="creature" class="tab-content">
-    <div class="switch-group">
+    <div class="switch-group"><input type="checkbox" id="img-only-cre"> <label for="img-only-cre">Based entirely on reference image</label></div>
+<div class="switch-group">
       <input type="checkbox" id="ref-cre"> <label for="ref-cre">You will be providing a reference image to ChatGPT</label>
     </div>
     <div class="switch-group">
@@ -541,7 +544,21 @@ function copyPrompt() {
   });
 }
 
+
+function checkImageOnly(id) {
+  return document.getElementById(id).checked;
+}
+
 function generateAdventurerPrompt() {
+  if (checkImageOnly("img-only-adv")) {
+    document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
+Detailed fantasy illustration in a semi-realistic style with painterly brushwork and dramatic lighting.
+The token is of a character based entirely on the reference image.
+All visual details, equipment, expression, and pose are based on the reference image.
+The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+    return;
+  }
+
   const ref = document.getElementById("ref-adv").checked ? "Based on this reference image. " : "";
   const g = document.getElementById("gender-adv").value;
   const a = document.getElementById("ancestry-adv").value;
@@ -562,6 +579,15 @@ ${ref}Generate a full-body isometric top-down token with a transparent backgroun
 }
 
 function generateVillagerPrompt() {
+  if (checkImageOnly("img-only-vil")) {
+    document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
+Detailed fantasy illustration in a semi-realistic style with painterly brushwork and dramatic lighting.
+The token is of a villager based entirely on the reference image.
+Clothing, accessories, physical traits, and demeanor are derived from the reference image.
+The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+    return;
+  }
+
   const ref = document.getElementById("ref-vil").checked ? "Based on this reference image. " : "";
   const g = document.getElementById("gender-vil").value;
   const a = document.getElementById("ancestry-vil").value;
@@ -581,6 +607,15 @@ ${ref}Generate a full-body isometric top-down token with a transparent backgroun
 }
 
 function generateCreaturePrompt() {
+  if (checkImageOnly("img-only-cre")) {
+    document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
+Detailed fantasy illustration in a semi-realistic style with painterly brushwork and dramatic lighting.
+The token is of a creature based entirely on the reference image.
+Its anatomy, pose, coloration, and expression are all interpreted from the reference image.
+The token must be a .png file with a transparent background in an isometric top-down perspective.`;
+    return;
+  }
+
   const ref = document.getElementById("ref-cre").checked ? "Based on this reference image. " : "";
   const specific = document.getElementById("specific-cre").checked;
   const name = document.getElementById("name-cre").value;
