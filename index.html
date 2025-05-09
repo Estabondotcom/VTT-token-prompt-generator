@@ -116,7 +116,7 @@
     .hidden {
       display: none;
     }
-  
+
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 2em;
@@ -142,7 +142,6 @@
     font-size: 1em;
   }
 }
-
 
 input {
   color: black;
@@ -228,7 +227,6 @@ input::placeholder {
 }
 </style>
 
-
 <style>
 #help-button, #tips-button {
   background-color: gold;
@@ -275,7 +273,6 @@ input::placeholder {
   <button id="help-button" onclick="toggleHelp()">?</button>
 </div>
 
-
   <h1>VTT Token Prompt Generator for ChatGPT</h1>
 
   <div class="tab-buttons">
@@ -286,7 +283,7 @@ input::placeholder {
 
   <!-- Adventurer Tab -->
   <div id="adventurer" class="tab-content active">
-   
+
 <div class="switch-group">
       <input type="checkbox" id="ref-adv"> <label for="ref-adv">You will be providing a reference image to ChatGPT</label>
     </div>
@@ -364,13 +361,6 @@ input::placeholder {
     <button id="copy-button" onclick="copyPrompt()">Copy to Clipboard</button>
   </div>
   <div id="output-box">Your generated prompt will appear here.</div>
- 
-
-  
-
-
-
-
 
 <div id="help-content">
   <h2>🧰 What This Is</h2>
@@ -393,12 +383,7 @@ input::placeholder {
   </ol>
 </div>
 
-
-
-
-
 <div id="copy-popup">Copied to clipboard!</div>
-
 
 <style>
 #help-button, #tips-button {
@@ -423,11 +408,6 @@ input::placeholder {
 }
 </style>
 
-
-
-
-
-
 <div id="tips-content" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background-color: #f8f5e6; color: #222; padding: 20px; border-radius: 12px; z-index: 1001; box-shadow: 0 0 10px rgba(0,0,0,0.4);" class="hidden">
   <h3>Tips</h3>
   <ul style="line-height: 1.1;">
@@ -438,10 +418,6 @@ input::placeholder {
    <p><li>Sometimes remnants of a background or bits of text may remain in the token. You can clean these up manually using any photo editing software.</li></p>
   </ul>
 </div>
-
-
-
-
 
 <script>
 function showTab(tabId) {
@@ -474,9 +450,7 @@ function generateRandomAdventurer() {
     "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
     "Shoony", "Tengu", "Android", "Fetchling", "Ratfolk", "Skeleton", "Kitsune", "Tiefling", "Aasimar", "Nagaji", "Vanara",
     "Strix", "Grippli", "Tripkee", "Kholo", "Gillman", "Ghoran", "Suli", "Ifrit", "Oread", "Sylph", "Undine", "Changeling",
-    "Duskwalker", "Nephilim", "Beastkin", "Poppet", "Sprite", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
-    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
-  ];
+    "Duskwalker", "Nephilim", "Beastkin", "Poppet", "Sprite", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",];
   const classList = [
     "Alchemist", "Barbarian", "Bard", "Champion", "Cleric", "Druid", "Fighter", "Gunslinger", "Inventor", "Investigator",
     "Kineticist", "Magus", "Monk", "Oracle", "Psychic", "Ranger", "Rogue", "Sorcerer", "Summoner", "Swashbuckler",
@@ -516,13 +490,11 @@ function generateRandomVillager() {
     "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Catfolk", "Kobold", "Hobgoblin", "Leshy", "Lizardfolk",
     "Shoony", "Tengu", "Ratfolk", "Kitsune", "Tripkee", "Vanara", "Kholo", "Sprite", "Beastkin", "Ifrit", "Oread", "Sylph",
     "Undine", "Changeling", "Duskwalker", "Poppet", "Suli", "Nephilim", "Ghoran", "Gillman", "Fetchling", "Strix", "Grippli",
-    "Skeleton", "Android", "Aasimar", "Tiefling", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
-    "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",
-  ];
+    "Skeleton", "Android", "Aasimar", "Tiefling", "Human", "Elf", "Dwarf", "Gnome", "Goblin", "Halfling", "Orc",];
   const occupationList = [
     "Baker", "Blacksmith", "Merchant", "Town Crier", "Miscreant", "Fletcher", "Beggar", "Noble", "Healer", "Guard", "bartender", "servent",  "waiter/waitress",
     "Innkeeper", "Cook", "Miner", "Farmer", "Weaver", "Scribe", "Apothecary", "Fisher", "Tailor", "Carpenter", "priest/priestess",
-    "Barber", "Chandler", "Butcher", "Stablehand", "Tanner", "Beekeeper", "Herbalist", "Bookbinder", "Cartwright", "scholar" 
+    "Barber", "Chandler", "Butcher", "Stablehand", "Tanner", "Beekeeper", "Herbalist", "Bookbinder", "Cartwright", "scholar"
     "Seamstress", "Potter", "Cobbler", "Candlemaker", "Glovemaker", "Painter", "Glassblower", "Hatter", "Juggler", "Mason", "Wainwright"
   ];
 
@@ -600,7 +572,6 @@ function generateRandomCreature() {
   document.getElementById("pose-cre").value = getRandomCreatureValue(poseList);
 }
 
-
 function copyPrompt() {
   const text = document.getElementById("output-box").innerText;
   navigator.clipboard.writeText(text).then(() => {
@@ -619,9 +590,7 @@ function copyPrompt() {
     }, 1800);
   });
 
-
 }
-
 
 function checkImageOnly(id) {
   return document.getElementById(id).checked;
@@ -632,7 +601,7 @@ function generateAdventurerPrompt() {
     document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
 Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting.
 The token is of a character based entirely on the reference image.
-All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures. 
+All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures.
 The token must be a .png file with a transparent background in an isometric top-down perspective.`;
     return;
   }
@@ -661,7 +630,7 @@ function generateVillagerPrompt() {
     document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
 Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting.
 The token is of a character based entirely on the reference image.
-All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures. 
+All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures.
 The token must be a .png file with a transparent background in an isometric top-down perspective.`;
     return;
   }
@@ -689,7 +658,7 @@ function generateCreaturePrompt() {
     document.getElementById("output-box").innerText = `Generate a full-body isometric top-down transparent .png token for use with FoundryVTT, styled after detailed fantasy artwork inspired by Pathfinder and D&D.
 Detailed fantasy illustration in a semi-realistic style with smooth brushwork and dramatic lighting.
 The token is of a character based entirely on the reference image.
-All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures. 
+All visual details, equipment, expression, and pose are based on the reference image. avoide any papery textures.
 The token must be a .png file with a transparent background in an isometric top-down perspective.`;
     return;
   }
@@ -712,13 +681,11 @@ ${ref}Generate a full-body isometric top-down token with a transparent backgroun
   document.getElementById("output-box").innerText = prompt;
 }
 
-
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('input', () => {
     input.style.color = 'black';
   });
 });
-
 
 function clearAdventurerFields() {
   ['gender-adv','ancestry-adv','class-adv','hair-adv','eyes-adv','traits-adv','clothes-adv','gear-adv','mood-adv'].forEach(id => {
@@ -744,8 +711,6 @@ function clearCreatureFields() {
   });
 }
 
-
-
 function toggleHelp() {
   const content = document.getElementById("help-content");
   const button = document.getElementById("help-button");
@@ -758,7 +723,6 @@ function toggleHelp() {
   }
 }
 
-
 const tokenImages = [
   "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png",
   "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png",
@@ -770,7 +734,6 @@ const tokenImages = [
   "71.png", "72.png", "73.png", "74.png", "75.png", "76.png", "77.png", "78.png", "79.png", "80.png",
   "81.png", "82.png", "83.png", "84.png", "85.png", "86.png", "87.png", "88.png", "89.png"
 ];
-  
 
 const pf2eCreatures = [
   "Hydra", "Chimera", "Basilisk", "Manticore", "Wyvern", "Owlbear", "Displacer Beast", "Grick Alpha", "Frost Worm", "Barghest",
@@ -782,7 +745,6 @@ function getRandomCreatureName() {
   const index = Math.floor(Math.random() * pf2eCreatures.length);
   return pf2eCreatures[index];
 }
-
 
 function showRandomTokens() {
   const container = document.getElementById("example-token-wrapper");
@@ -798,8 +760,6 @@ function showRandomTokens() {
     container.appendChild(image);
   });
 }
-
-
 
 function toggleTips() {
   const content = document.getElementById("tips-content");
