@@ -620,11 +620,6 @@ function copyPrompt() {
   })
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("refresh-tokens").addEventListener("click", showRandomTokens);
-  showRandomTokens();
-});
-
 }
 
 
@@ -804,11 +799,6 @@ function showRandomTokens() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("refresh-tokens").addEventListener("click", showRandomTokens);
-  showRandomTokens();
-});
-
 
 
 function toggleTips() {
@@ -824,6 +814,12 @@ function toggleTips() {
 }
 
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("refresh-tokens").addEventListener("click", showRandomTokens);
+  showRandomTokens();
+});
+
 </script>
 
 </body>
