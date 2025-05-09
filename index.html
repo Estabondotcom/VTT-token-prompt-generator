@@ -444,8 +444,6 @@ input::placeholder {
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
@@ -619,7 +617,14 @@ function copyPrompt() {
     setTimeout(() => {
       popup.style.display = "none";
     }, 1800);
-  });
+  })
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("refresh-tokens").addEventListener("click", showRandomTokens);
+  showRandomTokens();
+});
+
 }
 
 
