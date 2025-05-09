@@ -367,7 +367,85 @@ input::placeholder {
  
 
   
+
+
+
+
+
+<div id="help-content">
+  <h2>🧰 What This Is</h2>
+  <p>This is a web app designed to help you quickly generate high-quality text prompts to use with ChatGPT for creating <strong>isometric top-down tokens</strong> for your <strong>fantasy virtual tabletop (VTT)</strong> games, like those using <strong>Pathfinder 2e</strong> or <strong>Dungeons & Dragons</strong>.</p>
+  <h2>🎯 What It Does</h2>
+  <p>Each tab (Adventurer, Villager, Creature) contains customizable fields for character or creature details. The app then assembles these inputs into a prompt that tells ChatGPT <strong>exactly</strong> what kind of token you want — styled as fantasy artwork with true transparency for easy use in VTTs like FoundryVTT or Roll20.</p>
+  <h2>🛠️ How to Use It</h2>
+  <ol>
+    <li><strong>Choose a Tab</strong> – Select whether you're generating a prompt for an <em>Adventurer</em>, <em>Villager</em>, or <em>Creature</em>.</li>
+    <li><strong>Fill In the Fields</strong> – Provide details like gender, ancestry, class, traits, and gear. Example placeholders are provided to guide you.</li>
+    <li><strong>Use Toggles (Optional)</strong><br>
+      - <em>Reference Image:</em> Let the generator know you'll be supplying ChatGPT with a referance image.<br>
+      - <em>Specific Creature</em> (Creature tab only): Switch from creature family to specific creature.
+    </li>
+    <li><strong>Generate Your Prompt</strong><br>
+      - Click <em>“Generate Prompt”</em> to create a custom text prompt based on your inputs.<br>
+      - Or click <em>“Generate Random”</em> to autofill the fields with fantasy-appropriate values, and then click <em>“Generate Prompt”</em> .
+    </li>
+    <li><strong>Copy and Paste</strong> – Use the <em>Copy to Clipboard</em> button to copy the generated prompt. Paste it into ChatGPT to generate your token image.</li>
+  </ol>
+</div>
+
+
+
+
+
+<div id="copy-popup">Copied to clipboard!</div>
+
+
+<style>
+#help-button, #tips-button {
+  background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#random-images-container img {
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+</style>
+
+
+
+
+
+
+<div id="tips-content" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background-color: #f8f5e6; color: #222; padding: 20px; border-radius: 12px; z-index: 1001; box-shadow: 0 0 10px rgba(0,0,0,0.4);" class="hidden">
+  <h3>Tips</h3>
+  <ul style="line-height: 1.1;">
+  <p><li>If you're uploading a reference image to ChatGPT, you can use the based entirely on reference image box and leave all fields blank. The prompt will be automatically generated based entirely on the image.</li></p>
+   <p><li>Random prompts are fun, but for best results, fine-tune the fields to match your vision—especially under the <strong>Creature</strong> tab.</li></p>
+   <p><li>When creating a cleric, champion, paladin, or any follower of a specific deity, be sure to add <em>“of [deity’s name]”</em> at the end of the class field.</li></p>
+   <p><li>ChatGPT initially generates tokens with a background and removes it afterward. Occasionally, this removal fails, resulting in a “fake” transparent background. When this happens, it’s usually best to regenerate the image rather than request a background removal fix.</li></p>
+   <p><li>Sometimes remnants of a background or bits of text may remain in the token. You can clean these up manually using any photo editing software.</li></p>
+  </ul>
+</div>
+
+
+
+
+
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
@@ -668,33 +746,8 @@ function clearCreatureFields() {
   });
 }
 
-</script>
 
 
-
-
-<div id="help-content">
-  <h2>🧰 What This Is</h2>
-  <p>This is a web app designed to help you quickly generate high-quality text prompts to use with ChatGPT for creating <strong>isometric top-down tokens</strong> for your <strong>fantasy virtual tabletop (VTT)</strong> games, like those using <strong>Pathfinder 2e</strong> or <strong>Dungeons & Dragons</strong>.</p>
-  <h2>🎯 What It Does</h2>
-  <p>Each tab (Adventurer, Villager, Creature) contains customizable fields for character or creature details. The app then assembles these inputs into a prompt that tells ChatGPT <strong>exactly</strong> what kind of token you want — styled as fantasy artwork with true transparency for easy use in VTTs like FoundryVTT or Roll20.</p>
-  <h2>🛠️ How to Use It</h2>
-  <ol>
-    <li><strong>Choose a Tab</strong> – Select whether you're generating a prompt for an <em>Adventurer</em>, <em>Villager</em>, or <em>Creature</em>.</li>
-    <li><strong>Fill In the Fields</strong> – Provide details like gender, ancestry, class, traits, and gear. Example placeholders are provided to guide you.</li>
-    <li><strong>Use Toggles (Optional)</strong><br>
-      - <em>Reference Image:</em> Let the generator know you'll be supplying ChatGPT with a referance image.<br>
-      - <em>Specific Creature</em> (Creature tab only): Switch from creature family to specific creature.
-    </li>
-    <li><strong>Generate Your Prompt</strong><br>
-      - Click <em>“Generate Prompt”</em> to create a custom text prompt based on your inputs.<br>
-      - Or click <em>“Generate Random”</em> to autofill the fields with fantasy-appropriate values, and then click <em>“Generate Prompt”</em> .
-    </li>
-    <li><strong>Copy and Paste</strong> – Use the <em>Copy to Clipboard</em> button to copy the generated prompt. Paste it into ChatGPT to generate your token image.</li>
-  </ol>
-</div>
-
-<script>
 function toggleHelp() {
   const content = document.getElementById("help-content");
   const button = document.getElementById("help-button");
@@ -706,39 +759,8 @@ function toggleHelp() {
     button.textContent = "?";
   }
 }
-</script>
 
 
-
-<div id="copy-popup">Copied to clipboard!</div>
-
-
-<style>
-#help-button, #tips-button {
-  background-color: gold;
-  color: black;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-#random-images-container img {
-  width: 100px;
-  height: 100px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-}
-</style>
-
-
-
-<script>
 const tokenImages = [
   "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png",
   "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png",
@@ -784,22 +806,8 @@ document.addEventListener("DOMContentLoaded", function () {
   showRandomTokens();
 });
 
-</script>
 
 
-<div id="tips-content" style="position: fixed; top: 70px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background-color: #f8f5e6; color: #222; padding: 20px; border-radius: 12px; z-index: 1001; box-shadow: 0 0 10px rgba(0,0,0,0.4);" class="hidden">
-  <h3>Tips</h3>
-  <ul style="line-height: 1.1;">
-  <p><li>If you're uploading a reference image to ChatGPT, you can use the based entirely on reference image box and leave all fields blank. The prompt will be automatically generated based entirely on the image.</li></p>
-   <p><li>Random prompts are fun, but for best results, fine-tune the fields to match your vision—especially under the <strong>Creature</strong> tab.</li></p>
-   <p><li>When creating a cleric, champion, paladin, or any follower of a specific deity, be sure to add <em>“of [deity’s name]”</em> at the end of the class field.</li></p>
-   <p><li>ChatGPT initially generates tokens with a background and removes it afterward. Occasionally, this removal fails, resulting in a “fake” transparent background. When this happens, it’s usually best to regenerate the image rather than request a background removal fix.</li></p>
-   <p><li>Sometimes remnants of a background or bits of text may remain in the token. You can clean these up manually using any photo editing software.</li></p>
-  </ul>
-</div>
-
-
-<script>
 function toggleTips() {
   const content = document.getElementById("tips-content");
   const button = document.getElementById("tips-button");
@@ -811,6 +819,8 @@ function toggleTips() {
     button.textContent = "!";
   }
 }
+
+});
 </script>
 
 </body>
